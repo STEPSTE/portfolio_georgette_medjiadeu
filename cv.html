@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parcours & CV | Georgette Medjiadeu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #111418; --gold: #B8962E; --gold-pale: #D4AF58;
+  --gold-faint: rgba(184,150,46,0.10); --cream: #FAF7F2;
+  --cream-dark: #F0EBE1; --stone: #8C8880; --stone-light: #C8C4BB;
+  --white: #FFFFFF;
+  --f-display: 'DM Serif Display', Georgia, serif;
+  --f-heading: 'Playfair Display', Georgia, serif;
+  --f-body: 'DM Sans', sans-serif;
+  --max: 1200px; --ease: cubic-bezier(0.25,0.46,0.45,0.94);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 56px; }
+.gold-line { display: inline-flex; align-items: center; gap: 14px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+.gold-line::before { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.h2 { font-family: var(--f-heading); font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 18px; }
+.h2 em { font-style: italic; color: var(--gold); }
+
+/* NAV */
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 72px; display: flex; align-items: center; border-bottom: 1px solid transparent; transition: background 0.4s, border-color 0.4s; }
+#nav.solid { background: rgba(250,247,242,0.96); border-color: var(--cream-dark); backdrop-filter: blur(12px); }
+#nav .container { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; }
+.nav-brand span { color: var(--gold); }
+.nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-menu a { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); text-decoration: none; transition: color 0.25s; position: relative; }
+.nav-menu a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+.nav-menu a:hover { color: var(--ink); }
+.nav-menu a:hover::after { transform: scaleX(1); }
+.nav-cta { background: var(--ink); color: var(--cream) !important; padding: 9px 22px; font-size: 0.68rem !important; letter-spacing: 0.2em !important; transition: background 0.25s !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; }
+
+/* PAGE HERO */
+.page-hero { background: var(--ink); padding: 152px 0 96px; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.6; pointer-events: none; z-index: 1; }
+.page-hero .container { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+.ph-left {}
+.ph-kicker { display: flex; align-items: center; gap: 14px; font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-pale); font-weight: 400; margin-bottom: 32px; animation: fadeUp 0.9s 0.1s both; }
+.ph-kicker-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+.ph-title { font-family: var(--f-display); font-size: clamp(3.5rem, 6vw, 6.5rem); font-weight: 400; color: var(--cream); line-height: 0.95; letter-spacing: -0.01em; animation: fadeUp 0.9s 0.25s both; }
+.ph-title em { font-style: italic; color: var(--gold-pale); display: block; }
+.ph-rule { width: 56px; height: 1px; background: var(--gold); margin: 36px 0 24px; animation: slideIn 0.9s 0.4s both; }
+.ph-desc { font-size: 0.9rem; color: rgba(250,247,242,0.5); line-height: 1.9; max-width: 420px; letter-spacing: 0.02em; animation: fadeUp 0.9s 0.5s both; }
+.ph-right { padding-left: 48px; border-left: 1px solid rgba(184,150,46,0.15); animation: fadeUp 0.9s 0.4s both; }
+.identity-block { display: flex; flex-direction: column; gap: 20px; }
+.id-row { display: flex; gap: 20px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; }
+.id-row:last-child { border-bottom: none; padding-bottom: 0; }
+.id-key { font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(250,247,242,0.28); width: 130px; flex-shrink: 0; padding-top: 2px; }
+.id-val { font-size: 0.84rem; color: rgba(250,247,242,0.72); line-height: 1.55; }
+.id-val strong { color: var(--cream); font-weight: 400; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { width: 0; } to { width: 56px; } }
+
+/* DOWNLOAD BAR */
+.dl-bar { background: var(--gold); padding: 0; }
+.dl-bar-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.dl-text { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); font-weight: 400; }
+.dl-btn { display: flex; align-items: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); background: rgba(0,0,0,0.15); padding: 10px 24px; text-decoration: none; font-weight: 500; transition: background 0.25s; font-family: var(--f-body); border: none; cursor: pointer; }
+.dl-btn:hover { background: rgba(0,0,0,0.28); }
+.dl-btn svg { width: 14px; height: 14px; stroke: var(--white); fill: none; stroke-width: 1.5; }
+
+/* TWO-COL LAYOUT */
+.cv-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 0; }
+.cv-sidebar { background: var(--ink); padding: 80px 48px; position: sticky; top: 0; height: fit-content; }
+.cv-main { padding: 80px 64px; }
+
+/* SIDEBAR */
+.sb-section { margin-bottom: 56px; }
+.sb-section:last-child { margin-bottom: 0; }
+.sb-title { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.sb-title::after { content: ''; flex: 1; height: 1px; background: rgba(184,150,46,0.25); }
+.sb-item { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.sb-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sb-item-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 6px; }
+.sb-item-val { font-size: 0.88rem; color: rgba(250,247,242,0.75); line-height: 1.5; }
+.sb-item-val a { color: var(--gold-pale); text-decoration: none; }
+.sb-item-val a:hover { color: var(--gold); }
+
+/* Competences bars */
+.comp-item { margin-bottom: 16px; }
+.comp-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(250,247,242,0.6); margin-bottom: 8px; letter-spacing: 0.06em; }
+.comp-bar { height: 2px; background: rgba(255,255,255,0.07); position: relative; }
+.comp-fill { height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(0); transition: transform 1.2s var(--ease); }
+.comp-fill.in { transform: scaleX(1); }
+
+/* Language tags */
+.lang-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.lang-item:last-child { border-bottom: none; }
+.lang-name { font-size: 0.82rem; color: rgba(250,247,242,0.7); }
+.lang-level { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+
+/* MAIN — sections */
+.cv-section { margin-bottom: 80px; padding-bottom: 80px; border-bottom: 1px solid var(--cream-dark); }
+.cv-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cs-header { display: flex; align-items: center; gap: 24px; margin-bottom: 48px; }
+.cs-num { font-family: var(--f-display); font-size: 4rem; font-style: italic; color: var(--cream-dark); line-height: 1; flex-shrink: 0; }
+.cs-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+.cs-title { font-family: var(--f-heading); font-size: 1.8rem; font-weight: 400; color: var(--ink); line-height: 1.2; }
+.cs-title em { font-style: italic; color: var(--gold); }
+
+/* Experience items */
+.exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 28px 0; border-top: 1px solid var(--cream-dark); }
+.exp-item:first-of-type { border-top: none; }
+.exp-period { flex-shrink: 0; }
+.exp-years { font-family: var(--f-heading); font-size: 0.82rem; font-weight: 500; color: var(--gold); display: block; margin-bottom: 4px; }
+.exp-duration { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-light); }
+.exp-body {}
+.exp-role { font-family: var(--f-heading); font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.exp-org { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.exp-desc { font-size: 0.85rem; font-weight: 300; color: var(--stone); line-height: 1.8; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.exp-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--cream-dark); color: var(--stone); }
+
+/* Awards grid in CV */
+.awards-list { display: flex; flex-direction: column; gap: 0; }
+.award-row { display: grid; grid-template-columns: 64px 1fr 140px; gap: 24px; align-items: center; padding: 20px 0; border-top: 1px solid var(--cream-dark); }
+.award-row:last-child { border-bottom: 1px solid var(--cream-dark); }
+.award-year { font-family: var(--f-heading); font-size: 0.9rem; font-weight: 500; color: var(--gold); }
+.award-name { font-size: 0.9rem; color: var(--ink); line-height: 1.4; }
+.award-loc { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone-light); text-align: right; }
+
+/* Publications / Engagements */
+.engage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.engage-item { background: var(--cream); padding: 24px; border-left: 2px solid var(--gold); }
+.engage-item-title { font-family: var(--f-heading); font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.engage-item-desc { font-size: 0.8rem; font-weight: 300; color: var(--stone); line-height: 1.7; }
+.engage-item-meta { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 12px; display: block; }
+
+/* CTA */
+.cta-section { background: var(--ink); padding: 80px 0; }
+.cta-section .container { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+.cta-text {}
+.cta-title { font-family: var(--f-display); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; color: var(--cream); line-height: 1.1; }
+.cta-title em { font-style: italic; color: var(--gold-pale); }
+.cta-sub { font-size: 0.85rem; color: rgba(250,247,242,0.4); margin-top: 14px; max-width: 400px; line-height: 1.7; }
+.cta-actions { display: flex; gap: 14px; flex-shrink: 0; }
+.btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; padding: 15px 32px; transition: all 0.3s var(--ease); font-family: var(--f-body); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: var(--gold-pale); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: rgba(250,247,242,0.6); border: 1px solid rgba(250,247,242,0.18); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0; }
+footer .container { display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 400; color: var(--cream); }
+.footer-brand em { font-style: italic; color: var(--gold-pale); }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.3); text-decoration: none; transition: color 0.25s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.7rem; color: rgba(250,247,242,0.2); }
+
+/* PRINT STYLES */
+@media print {
+  #nav, .dl-bar, .cta-section, footer { display: none; }
+  .page-hero { padding: 48px 0; }
+  .cv-layout { grid-template-columns: 1fr; }
+  .cv-sidebar { background: none; color: var(--ink); padding: 0 0 40px; }
+  .cv-main { padding: 0; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .container { padding: 0 32px; }
+  .page-hero .container { grid-template-columns: 1fr; }
+  .ph-right { display: none; }
+  .cv-layout { grid-template-columns: 1fr; }
+  .cv-sidebar { position: static; padding: 64px 32px; }
+  .cv-main { padding: 64px 32px; }
+  .engage-grid { grid-template-columns: 1fr; }
+  .cta-section .container { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  .nav-menu { display: none; }
+  .exp-item { grid-template-columns: 1fr; gap: 12px; }
+  .award-row { grid-template-columns: 48px 1fr; }
+  .award-loc { display: none; }
+  footer .container { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-links { display: none; }
+}
+.nav-gallery {
+  color: var(--gold) !important;
+  border: 1px solid rgba(184,150,46,0.35) !important;
+  padding: 7px 18px;
+  transition: border-color 0.25s, background 0.25s !important;
+}
+.nav-gallery::after { display: none !important; }
+.nav-gallery:hover { border-color: var(--gold) !important; background: var(--gold-faint) !important; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="portfolio_georgette.html" class="nav-brand">G. <span>Medjiadeu</span></a>
+        <ul class="nav-menu">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="conferences.html">Conférences</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="cv.html">Parcours</a></li>
+      <li><a href="portfolio_georgette.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-left">
+      <div class="ph-kicker"><span class="ph-kicker-dot"></span> Curriculum Vitae</div>
+      <h1 class="ph-title">Parcours<br><em>&amp; Profil</em></h1>
+      <div class="ph-rule"></div>
+      <p class="ph-desc">Plus de 25 ans d'engagement entrepreneurial, associatif et international. Un profil rare, ancré dans les réalités africaines et ouvert sur le monde.</p>
+    </div>
+    <div class="ph-right">
+      <div class="identity-block">
+        <div class="id-row">
+          <span class="id-key">Nom complet</span>
+          <span class="id-val"><strong>Georgette Medjiadeu — Epse Tchokoualieu</strong></span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Localisation</span>
+          <span class="id-val">Yaoundé Biyemassi, Cameroun</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Email</span>
+          <span class="id-val"><a href="mailto:gmedjiadeu@gmail.com">gmedjiadeu@gmail.com</a></span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Téléphone</span>
+          <span class="id-val"><a href="tel:+237670854785">+237 670 85 47 85</a></span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Statut</span>
+          <span class="id-val">Ambassadrice de Paix · Conférencière int. · Présidente ONG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD BAR -->
+<div class="dl-bar">
+  <div class="container">
+    <div class="dl-bar-inner">
+      <span class="dl-text">Curriculum Vitae complet — Georgette Medjiadeu</span>
+      <button class="dl-btn" onclick="window.print()">
+        <svg viewBox="0 0 14 14"><path d="M2 10H1a1 1 0 01-1-1V5a1 1 0 011-1h12a1 1 0 011 1v4a1 1 0 01-1 1h-1"/><rect x="2" y="7" width="10" height="7"/><path d="M2 4V1h10v3"/></svg>
+        Imprimer / Exporter PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CV BODY -->
+<div class="cv-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="cv-sidebar">
+
+    <div class="sb-section">
+      <div class="sb-title">Profil</div>
+      <p style="font-size:0.84rem;color:rgba(250,247,242,0.6);line-height:1.85;font-weight:300">
+        Leader associative, entrepreneuse et conférencière internationale, Georgette Medjiadeu incarne un leadership ancré dans l'action concrète et la solidarité africaine. Fondatrice de Give A Smile Cameroun, Directrice Marketing chez Mea Bois et Ambassadrice de Paix, elle conjugue vision stratégique, engagement humanitaire et rayonnement continental.
+      </p>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">Compétences</div>
+      <div class="comp-item"><div class="comp-label"><span>Leadership associatif</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.96"></div></div></div>
+      <div class="comp-item"><div class="comp-label"><span>Entrepreneuriat social</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.92"></div></div></div>
+      <div class="comp-item"><div class="comp-label"><span>Relations internationales</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.88"></div></div></div>
+      <div class="comp-item"><div class="comp-label"><span>Marketing & communication</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.9"></div></div></div>
+      <div class="comp-item"><div class="comp-label"><span>Plaidoyer & lobbying</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.85"></div></div></div>
+      <div class="comp-item"><div class="comp-label"><span>Gestion de projets humanit.</span></div><div class="comp-bar"><div class="comp-fill" style="--w:0.94"></div></div></div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">Langues</div>
+      <div class="lang-item"><span class="lang-name">Français</span><span class="lang-level">Courant</span></div>
+      <div class="lang-item"><span class="lang-name">Anglais</span><span class="lang-level">Intermédiaire</span></div>
+      <div class="lang-item"><span class="lang-name">Féfé</span><span class="lang-level">Langue maternelle</span></div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">Réseaux</div>
+      <div class="sb-item">
+        <div class="sb-item-label">Association</div>
+        <div class="sb-item-val">Give A Smile Cameroun</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-item-label">Réseau international</div>
+        <div class="sb-item-val">Réseau Mondial des Femmes d'Impact</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-item-label">Engagement ODD</div>
+        <div class="sb-item-val">Fier des ODD International</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-item-label">Paix</div>
+        <div class="sb-item-val">African Network & Young Leader of Peace</div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">Contact</div>
+      <div class="sb-item">
+        <div class="sb-item-label">Email</div>
+        <div class="sb-item-val"><a href="mailto:gmedjiadeu@gmail.com">gmedjiadeu@gmail.com</a></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-item-label">Téléphone</div>
+        <div class="sb-item-val"><a href="tel:+237670854785">+237 670 85 47 85</a></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-item-label">Localisation</div>
+        <div class="sb-item-val">Yaoundé Biyemassi, Cameroun</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="cv-main">
+
+    <!-- EXPÉRIENCE -->
+    <div class="cv-section reveal">
+      <div class="cs-header">
+        <span class="cs-num">01</span>
+        <div>
+          <div class="cs-label">Expérience professionnelle</div>
+          <h2 class="cs-title">Parcours<br><em>& Mandats</em></h2>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2019 — Auj.</span>
+          <span class="exp-duration">6 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Présidente Fondatrice</div>
+          <div class="exp-org">Give A Smile Cameroun</div>
+          <p class="exp-desc">Création et direction de l'association humanitaire Give A Smile Cameroun. Coordination des programmes d'aide alimentaire, de kits scolaires, de sensibilisation médicale et de plaidoyer pour les populations vulnérables. Pilotage des partenariats institutionnels et mobilisation des ressources.</p>
+          <div class="exp-tags"><span class="exp-tag">Humanitaire</span><span class="exp-tag">ODD</span><span class="exp-tag">Leadership</span><span class="exp-tag">Gestion de projets</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2021 — Auj.</span>
+          <span class="exp-duration">4 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Ambassadrice de Paix & Conférencière Internationale</div>
+          <div class="exp-org">African Network · Réseau Mondial des Femmes d'Impact</div>
+          <p class="exp-desc">Interventions dans 8+ pays africains sur les thèmes de l'inclusion financière féminine, du leadership, de la paix et du développement durable. Conseillère économique et chargée de l'entrepreneuriat féminin au sein du Réseau Mondial des Femmes d'Impact.</p>
+          <div class="exp-tags"><span class="exp-tag">Diplomatie</span><span class="exp-tag">Conférences</span><span class="exp-tag">Plaidoyer</span><span class="exp-tag">Afrique</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2021 — Auj.</span>
+          <span class="exp-duration">4 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Représentante Régionale</div>
+          <div class="exp-org">Fier des ODD International — Cameroun</div>
+          <p class="exp-desc">Sensibilisation aux 17 Objectifs de Développement Durable des Nations Unies au Cameroun. Animation d'ateliers participatifs, formation de jeunes leaders et développement de projets alignés sur l'Agenda 2030.</p>
+          <div class="exp-tags"><span class="exp-tag">ODD</span><span class="exp-tag">Formation</span><span class="exp-tag">Jeunesse</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2016 — Auj.</span>
+          <span class="exp-duration">9 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Directrice Marketing & Actionnaire</div>
+          <div class="exp-org">Mea Bois — Cameroun</div>
+          <p class="exp-desc">Direction marketing de l'établissement Mea Bois. Développement de la stratégie commerciale et de la marque sur le marché camerounais. Promotion de la marque Smiling, collection mode éco-responsable alliant artisanat local et matériaux durables.</p>
+          <div class="exp-tags"><span class="exp-tag">Marketing</span><span class="exp-tag">Commerce</span><span class="exp-tag">Mode</span><span class="exp-tag">Entrepreneuriat</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2010 — 2013</span>
+          <span class="exp-duration">3 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Responsable Commercial</div>
+          <div class="exp-org">CADECI Microfinance</div>
+          <p class="exp-desc">Développement du portefeuille clients, promotion de l'accès aux services financiers et accompagnement des populations camerounaises dans leurs projets d'autonomisation économique. Expertise en micro-crédit et inclusion financière.</p>
+          <div class="exp-tags"><span class="exp-tag">Microfinance</span><span class="exp-tag">Commerce</span><span class="exp-tag">Inclusion financière</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">2001 — 2006</span>
+          <span class="exp-duration">5 ans</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Propriétaire & Gérante</div>
+          <div class="exp-org">Instituts de Beauté — Douala</div>
+          <p class="exp-desc">Création et gestion de plusieurs instituts de beauté à Douala. Développement d'une expertise entrepreneuriale en gestion d'équipe, relation client et gestion financière d'une PME.</p>
+          <div class="exp-tags"><span class="exp-tag">Entrepreneuriat</span><span class="exp-tag">Gestion</span><span class="exp-tag">PME</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">
+          <span class="exp-years">1999</span>
+          <span class="exp-duration">Fondation</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Fondatrice — Association Culturelle</div>
+          <div class="exp-org">SERGEF · Groupement BANWA FOYAVE, Ouest Cameroun</div>
+          <p class="exp-desc">Création à 20 ans d'une association de jeunes dédiée à la valorisation de la culture Bamiléké dans le groupement BANWA FOYAVE. Premier engagement associatif marquant l'entrée dans une vie de service aux communautés.</p>
+          <div class="exp-tags"><span class="exp-tag">Culture</span><span class="exp-tag">Jeunesse</span><span class="exp-tag">Patrimonine</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISTINCTIONS -->
+    <div class="cv-section reveal">
+      <div class="cs-header">
+        <span class="cs-num">02</span>
+        <div>
+          <div class="cs-label">Distinctions & Prix</div>
+          <h2 class="cs-title">Reconnaissances<br><em>internationales</em></h2>
+        </div>
+      </div>
+      <div class="awards-list">
+        <div class="award-row">
+          <span class="award-year">2025</span>
+          <span class="award-name">Prix Étoile d'Excellence — La Grandeur</span>
+          <span class="award-loc">Congo Brazzaville</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2024</span>
+          <span class="award-name">Trophée Africain des Femmes Entrepreneures — Tableau de Distinction</span>
+          <span class="award-loc">Bénin</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">Prix d'Impact — La Nuit Internationale des Coach</span>
+          <span class="award-loc">Cotonou, Bénin</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">Meilleure Femme Dynamique — Réseau Mondial des Femmes d'Impact</span>
+          <span class="award-loc">Bangui, RCA</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">Meilleure Femme Engagée en Gouvernance Locale — ADECO ONG</span>
+          <span class="award-loc">Cotonou, Bénin</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">Ordre de Mérite RNFI — Réseau National des Femmes d'Impact</span>
+          <span class="award-loc">Cameroun</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2022</span>
+          <span class="award-name">Prix Valorisation du Made in Cameroon</span>
+          <span class="award-loc">Yaoundé</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2022</span>
+          <span class="award-name">Note d'Encouragement — Valorisation Culture Bamiléké</span>
+          <span class="award-loc">Groupement FOYAVE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENTS -->
+    <div class="cv-section reveal">
+      <div class="cs-header">
+        <span class="cs-num">03</span>
+        <div>
+          <div class="cs-label">Engagements & Mandats</div>
+          <h2 class="cs-title">Responsabilités<br><em>actives</em></h2>
+        </div>
+      </div>
+      <div class="engage-grid">
+        <div class="engage-item">
+          <div class="engage-item-title">Ambassadrice de Paix</div>
+          <p class="engage-item-desc">African Network & Young Leader of Peace and Sustainable Development. Mission de promotion de la paix, de la solidarité et du développement durable à travers l'Afrique.</p>
+          <span class="engage-item-meta">2021 — En cours</span>
+        </div>
+        <div class="engage-item">
+          <div class="engage-item-title">Représentante Régionale — Fier des ODD</div>
+          <p class="engage-item-desc">Représentation du mouvement Fier des ODD International au Cameroun. Sensibilisation aux 17 ODD et développement de projets à impact local alignés sur l'Agenda 2030.</p>
+          <span class="engage-item-meta">2021 — En cours</span>
+        </div>
+        <div class="engage-item">
+          <div class="engage-item-title">Conseillère économique — RMFI</div>
+          <p class="engage-item-desc">Conseillère économique et chargée de l'entrepreneuriat féminin au sein du Réseau Mondial des Femmes d'Impact. Coordination des initiatives économiques de la section Cameroun.</p>
+          <span class="engage-item-meta">2022 — En cours</span>
+        </div>
+        <div class="engage-item">
+          <div class="engage-item-title">Présidente Fondatrice — Give A Smile</div>
+          <p class="engage-item-desc">Direction générale de l'association humanitaire Give A Smile Cameroun. Pilotage stratégique, coordination des bénévoles et représentation institutionnelle de l'organisation.</p>
+          <span class="engage-item-meta">2019 — En cours</span>
+        </div>
+        <div class="engage-item">
+          <div class="engage-item-title">Directrice Marketing — Mea Bois</div>
+          <p class="engage-item-desc">Direction marketing et actionnariat de l'établissement Mea Bois. Développement de la stratégie commerciale, du rayonnement de la marque et promotion du made in Cameroun.</p>
+          <span class="engage-item-meta">2016 — En cours</span>
+        </div>
+        <div class="engage-item">
+          <div class="engage-item-title">Promotrice — Marque Smiling</div>
+          <p class="engage-item-desc">Création et développement de la marque de mode éco-responsable Smiling, intégrant des matériaux recyclés, des herbes naturelles et valorisant le savoir-faire artisanal camerounais.</p>
+          <span class="engage-item-meta">2021 — En cours</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-text">
+      <h2 class="cta-title">Travailler<br><em>ensemble</em></h2>
+      <p class="cta-sub">Partenariat, invitation à conférence, collaboration associative ou projet à impact — Georgette Medjiadeu est ouverte à toute initiative sérieuse.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="portfolio_georgette.html#contact" class="btn btn-gold">Prendre contact</a>
+      <a href="conferences.html" class="btn btn-ghost">Inviter à conférer</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Georgette <em>Medjiadeu</em></div>
+    <ul class="footer-links">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="conferences.html">Conférences</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+    </ul>
+    <span class="footer-copy">Ambassadrice de Paix · 2025</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('solid', window.scrollY > 40); }, { passive: true });
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+/* Competences fill animation */
+const fills = document.querySelectorAll('.comp-fill');
+const fillObs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.style.transform = `scaleX(${e.target.style.getPropertyValue('--w') || 1})`; fillObs.unobserve(e.target); } }); }, { threshold: 0.5 });
+fills.forEach(el => fillObs.observe(el));
+</script>
+</body>
+</html>

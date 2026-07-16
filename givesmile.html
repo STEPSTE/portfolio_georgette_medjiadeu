@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Give A Smile Cameroun | Association Humanitaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #111418;
+  --ink-soft: #2a2f35;
+  --gold: #B8962E;
+  --gold-pale: #D4AF58;
+  --gold-faint: rgba(184,150,46,0.10);
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE1;
+  --stone: #8C8880;
+  --stone-light: #C8C4BB;
+  --white: #FFFFFF;
+  --sage: #3D5A4C;
+  --sage-light: #EEF3F0;
+  --f-display: 'DM Serif Display', Georgia, serif;
+  --f-heading: 'Playfair Display', Georgia, serif;
+  --f-body: 'DM Sans', sans-serif;
+  --max: 1200px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: var(--max); margin: 0 auto; padding: 0 56px; }
+.gold-line { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-body); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+.gold-line::before { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* NAV */
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 72px; display: flex; align-items: center; border-bottom: 1px solid transparent; transition: background 0.4s, border-color 0.4s; }
+#nav.solid { background: rgba(250,247,242,0.96); border-color: var(--cream-dark); backdrop-filter: blur(12px); }
+#nav .container { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; }
+.nav-brand span { color: var(--gold); }
+.nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-menu a { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); text-decoration: none; transition: color 0.25s; position: relative; }
+.nav-menu a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+.nav-menu a:hover { color: var(--ink); }
+.nav-menu a:hover::after { transform: scaleX(1); }
+.nav-cta { background: var(--ink); color: var(--cream) !important; padding: 9px 22px; font-size: 0.7rem !important; letter-spacing: 0.2em !important; transition: background 0.25s !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+.nav-active { color: var(--ink) !important; }
+.nav-active::after { transform: scaleX(1) !important; }
+
+/* HERO — Split asymmetric */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+  background: var(--ink);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6; pointer-events: none;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 140px 64px 80px;
+  position: relative; z-index: 3;
+}
+.hero-kicker { display: flex; align-items: center; gap: 14px; font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-pale); font-weight: 400; margin-bottom: 36px; animation: fadeUp 1s 0.2s both; }
+.hero-kicker-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+.hero-title { font-family: var(--f-display); font-size: clamp(3.8rem, 6vw, 6.5rem); font-weight: 400; color: var(--cream); line-height: 0.95; letter-spacing: -0.01em; animation: fadeUp 1s 0.35s both; }
+.hero-title em { font-style: italic; color: var(--gold-pale); display: block; }
+.hero-rule { width: 56px; height: 1px; background: var(--gold); margin: 36px 0 28px; animation: slideIn 1s 0.5s both; }
+.hero-desc { font-size: 0.9rem; font-weight: 300; color: rgba(250,247,242,0.55); line-height: 1.9; max-width: 400px; letter-spacing: 0.03em; animation: fadeUp 1s 0.6s both; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 52px; animation: fadeUp 1s 0.75s both; }
+.btn { display: inline-block; text-decoration: none; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; padding: 15px 36px; transition: all 0.3s var(--ease); cursor: pointer; border: none; font-family: var(--f-body); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: var(--gold-pale); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,150,46,0.35); }
+.btn-ghost { background: transparent; color: rgba(250,247,242,0.65); border: 1px solid rgba(250,247,242,0.2); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* Hero right — statement panel */
+.hero-right {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 72px 80px 56px;
+  border-left: 1px solid rgba(184,150,46,0.15);
+}
+.hero-manifesto {
+  font-family: var(--f-heading);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(250,247,242,0.75);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  animation: fadeUp 1s 0.6s both;
+}
+.hero-manifesto strong { font-style: normal; color: var(--gold-pale); font-weight: 400; }
+.hero-stats-row {
+  display: flex; gap: 0; margin-top: 64px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 48px;
+  animation: fadeUp 1s 0.8s both;
+}
+.h-stat { padding-right: 48px; border-right: 1px solid rgba(255,255,255,0.06); }
+.h-stat:last-child { padding-right: 0; border-right: none; padding-left: 48px; }
+.h-stat:nth-child(2) { padding-left: 48px; }
+.h-stat-val { font-family: var(--f-heading); font-size: 2.6rem; font-weight: 400; color: var(--cream); display: block; line-height: 1; }
+.h-stat-val sup { font-size: 1.1rem; }
+.h-stat-label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,247,242,0.3); margin-top: 8px; display: block; }
+
+.hero-scroll { position: absolute; bottom: 40px; left: 64px; z-index: 3; display: flex; align-items: center; gap: 12px; font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(250,247,242,0.3); animation: fadeUp 1s 1.2s both; }
+.hero-scroll-bar { width: 48px; height: 1px; background: rgba(250,247,242,0.12); position: relative; overflow: hidden; }
+.hero-scroll-bar::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gold); animation: barSlide 2.5s 1.5s ease infinite; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { width: 0; } to { width: 56px; } }
+@keyframes barSlide { 0% { left: -100%; } 100% { left: 100%; } }
+
+/* MISSION & VISION */
+.mv-section { padding: 120px 0; background: var(--white); }
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.mv-text {}
+.mv-text .body-text { font-size: 0.95rem; font-weight: 300; line-height: 1.95; color: var(--stone); max-width: 100%; margin-top: 24px; }
+.mv-text .body-text + .body-text { margin-top: 16px; }
+.h2 { font-family: var(--f-heading); font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 18px; }
+.h2 em { font-style: italic; color: var(--gold); }
+
+/* Values */
+.values-stack { display: flex; flex-direction: column; gap: 0; }
+.value-item { display: flex; align-items: flex-start; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--cream-dark); }
+.value-item:first-child { border-top: 1px solid var(--cream-dark); }
+.value-num { font-family: var(--f-heading); font-size: 1.4rem; font-weight: 400; color: var(--gold-pale); flex-shrink: 0; width: 48px; line-height: 1; }
+.value-body {}
+.value-title { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+.value-desc { font-size: 0.84rem; font-weight: 300; color: var(--stone); line-height: 1.75; }
+
+/* PROGRAMS */
+.programs-section { padding: 120px 0; background: var(--cream); }
+.programs-header { text-align: center; margin-bottom: 80px; }
+.programs-header .gold-line { justify-content: center; }
+.programs-header .gold-line::before { display: none; }
+.programs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--cream-dark); }
+.program-card { background: var(--white); padding: 48px 32px 40px; position: relative; overflow: hidden; transition: background 0.3s; }
+.program-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+.program-card:hover { background: var(--cream); }
+.program-card:hover::before { transform: scaleX(1); }
+.program-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; }
+.program-icon svg { width: 36px; height: 36px; stroke: var(--gold); stroke-width: 1; fill: none; }
+.program-num { font-family: var(--f-heading); font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--stone-light); margin-bottom: 16px; display: block; }
+.program-title { font-family: var(--f-heading); font-size: 1.25rem; font-weight: 500; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+.program-desc { font-size: 0.84rem; font-weight: 300; color: var(--stone); line-height: 1.8; }
+.program-actions { margin-top: 28px; display: flex; flex-direction: column; gap: 8px; }
+.program-action { display: flex; align-items: flex-start; gap: 10px; font-size: 0.78rem; font-weight: 300; color: var(--stone); line-height: 1.5; }
+.program-action::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 7px; }
+
+/* IMPACT NUMBERS */
+.impact-section { padding: 0; background: var(--ink); }
+.impact-inner { display: grid; grid-template-columns: repeat(5, 1fr); }
+.impact-stat { padding: 72px 32px; border-right: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; }
+.impact-stat:last-child { border-right: none; }
+.impact-stat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.8s var(--ease); }
+.impact-stat.in::before { transform: scaleX(1); }
+.impact-val { font-family: var(--f-heading); font-size: 3rem; font-weight: 400; color: var(--cream); display: block; line-height: 1; margin-bottom: 12px; }
+.impact-val sup { font-size: 1.3rem; }
+.impact-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.3); line-height: 1.5; }
+
+/* STORY SECTION */
+.story-section { padding: 120px 0; background: var(--white); }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.story-visual { position: relative; }
+.story-card { background: var(--ink); padding: 56px 48px; position: relative; }
+.story-card::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; border: 1px solid rgba(184,150,46,0.2); pointer-events: none; }
+.story-card-top { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+.story-card-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+.story-card-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+.story-card-quote { font-family: var(--f-heading); font-style: italic; font-size: 1.25rem; font-weight: 400; color: var(--cream); line-height: 1.7; margin-bottom: 28px; }
+.story-card-author { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.35); }
+.story-since-badge { position: absolute; bottom: -20px; right: -20px; background: var(--gold); padding: 20px 24px; text-align: center; }
+.story-since-year { font-family: var(--f-heading); font-size: 2.2rem; font-weight: 400; color: var(--white); display: block; line-height: 1; }
+.story-since-text { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.75); display: block; margin-top: 6px; }
+.story-text {}
+.story-text .body-text { font-size: 0.95rem; font-weight: 300; line-height: 1.95; color: var(--stone); margin-top: 24px; }
+.story-text .body-text + .body-text { margin-top: 16px; }
+.story-milestones { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+.milestone { display: flex; align-items: center; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--cream-dark); }
+.milestone:first-child { border-top: 1px solid var(--cream-dark); }
+.milestone-year { font-family: var(--f-heading); font-size: 0.9rem; font-weight: 500; color: var(--gold); width: 56px; flex-shrink: 0; }
+.milestone-text { font-size: 0.84rem; font-weight: 300; color: var(--ink); line-height: 1.5; }
+
+/* GET INVOLVED */
+.involve-section { padding: 120px 0; background: var(--cream); }
+.involve-header { margin-bottom: 72px; }
+.involve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.involve-card { background: var(--white); padding: 48px 36px 40px; position: relative; border: 1px solid var(--cream-dark); transition: background 0.3s, border-color 0.3s; }
+.involve-card:hover { background: var(--cream); border-color: var(--stone-light); }
+.involve-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+.involve-card:hover::after { transform: scaleX(1); }
+.involve-icon { width: 52px; height: 52px; border: 1px solid var(--cream-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; transition: border-color 0.3s; }
+.involve-card:hover .involve-icon { border-color: var(--gold); }
+.involve-icon svg { width: 24px; height: 24px; stroke: var(--gold); stroke-width: 1.2; fill: none; }
+.involve-title { font-family: var(--f-heading); font-size: 1.35rem; font-weight: 500; color: var(--ink); margin-bottom: 16px; }
+.involve-desc { font-size: 0.84rem; font-weight: 300; color: var(--stone); line-height: 1.8; margin-bottom: 32px; }
+.involve-cta { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: gap 0.25s; }
+.involve-cta::after { content: '—'; color: var(--gold); }
+.involve-cta:hover { gap: 18px; }
+
+/* CTA BAND */
+.cta-band { background: var(--ink); padding: 96px 0; position: relative; overflow: hidden; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.5; pointer-events: none; }
+.cta-band .container { position: relative; z-index: 1; text-align: center; }
+.cta-band .gold-line { justify-content: center; color: var(--gold-pale); }
+.cta-band .gold-line::before { background: var(--gold-pale); }
+.cta-title { font-family: var(--f-display); font-size: clamp(2.2rem, 3.5vw, 3.4rem); font-weight: 400; color: var(--cream); line-height: 1.1; margin: 20px 0 16px; }
+.cta-title em { font-style: italic; color: var(--gold-pale); }
+.cta-sub { font-size: 0.88rem; font-weight: 300; color: rgba(250,247,242,0.4); margin-bottom: 44px; }
+.btn-ghost-light { background: transparent; color: rgba(250,247,242,0.6); border: 1px solid rgba(250,247,242,0.18); margin-left: 16px; }
+.btn-ghost-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0; }
+footer .container { display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 400; color: var(--cream); letter-spacing: 0.04em; }
+.footer-brand em { font-style: italic; color: var(--gold-pale); }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.3); text-decoration: none; transition: color 0.25s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.7rem; color: rgba(250,247,242,0.2); letter-spacing: 0.1em; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 140px 32px 80px; }
+  .mv-grid, .story-grid { grid-template-columns: 1fr; gap: 56px; }
+  .programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .impact-inner { grid-template-columns: repeat(3, 1fr); }
+  .impact-stat:nth-child(3) { border-right: none; }
+  .involve-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  .nav-menu { display: none; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .impact-inner { grid-template-columns: 1fr 1fr; }
+  .involve-grid { grid-template-columns: 1fr; }
+  footer .container { flex-direction: column; gap: 24px; text-align: center; }
+  .footer-links { display: none; }
+}
+.nav-gallery {
+  color: var(--gold) !important;
+  border: 1px solid rgba(184,150,46,0.35) !important;
+  padding: 7px 18px;
+  transition: border-color 0.25s, background 0.25s !important;
+}
+.nav-gallery::after { display: none !important; }
+.nav-gallery:hover { border-color: var(--gold) !important; background: var(--gold-faint) !important; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="portfolio_georgette.html" class="nav-brand">G. <span>Medjiadeu</span></a>
+        <ul class="nav-menu">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="conferences.html">Conférences</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="cv.html">Parcours</a></li>
+      <li><a href="portfolio_georgette.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">
+      <span class="hero-kicker-dot"></span>
+      Fondée en 2019 · Yaoundé, Cameroun
+    </div>
+    <h1 class="hero-title">
+      Give A<br>
+      <em>Smile</em>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">
+      Redonner le sourire à ceux qui en ont le plus besoin, une action à la fois. Une organisation humanitaire ancrée dans les réalités africaines, portée par des valeurs de dignité, d'inclusion et de paix durable.
+    </p>
+    <div class="hero-actions">
+      <a href="#impliquer" class="btn btn-gold">Rejoindre la cause</a>
+      <a href="#programmes" class="btn btn-ghost">Nos programmes</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-manifesto">
+      « Redonner le sourire à ceux qui en ont le plus besoin,<br>
+      <strong>une action à la fois.</strong><br>
+      Parce que chaque être humain mérite<br>la dignité et l'espoir. »
+    </p>
+    <div class="hero-stats-row">
+      <div class="h-stat">
+        <span class="h-stat-val">2019</span>
+        <span class="h-stat-label">Fondation</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-val">8<sup>+</sup></span>
+        <span class="h-stat-label">Programmes actifs</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-val">6<sup>+</sup></span>
+        <span class="h-stat-label">Années d'impact</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-bar"></div>
+    Découvrir
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mv-section" id="mission">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-text reveal">
+        <div class="gold-line">Notre Mission</div>
+        <h2 class="h2">Agir là où<br><em>le besoin est réel</em></h2>
+        <p class="body-text">
+          Give A Smile Cameroun est une association humanitaire à but non lucratif fondée en 2019 par Georgette Medjiadeu à Yaoundé. Elle intervient auprès des populations les plus vulnérables du Cameroun : familles déplacées par les conflits, enfants orphelins, personnes sans accès aux soins, jeunes sans accompagnement.
+        </p>
+        <p class="body-text">
+          Notre mission est simple et exigeante : apporter une aide concrète, mesurable et digne aux personnes fragilisées, tout en les accompagnant vers une autonomie durable, en adéquation avec les Objectifs de Développement Durable des Nations Unies.
+        </p>
+        <p class="body-text">
+          Give A Smile Cameroun, c'est aussi un vecteur de changement de mentalités — sensibiliser les communautés, mobiliser les énergies et inspirer d'autres acteurs à s'engager pour un Cameroun plus solidaire et plus juste.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="gold-line" style="margin-bottom:40px">Nos Valeurs</div>
+        <div class="values-stack">
+          <div class="value-item">
+            <div class="value-num">01</div>
+            <div class="value-body">
+              <div class="value-title">Dignité</div>
+              <div class="value-desc">Chaque personne accompagnée est traitée avec respect absolu, indépendamment de sa situation sociale, ethnique ou confessionnelle.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">02</div>
+            <div class="value-body">
+              <div class="value-title">Impact mesurable</div>
+              <div class="value-desc">Chaque action est documentée, évaluée et orientée vers des résultats concrets et durables pour les bénéficiaires et leurs communautés.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">03</div>
+            <div class="value-body">
+              <div class="value-title">Inclusion</div>
+              <div class="value-desc">Nous veillons à toucher les invisibles, ceux que les dispositifs classiques n'atteignent pas — les déplacés internes, les minorités, les personnes âgées isolées.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">04</div>
+            <div class="value-body">
+              <div class="value-title">Solidarité africaine</div>
+              <div class="value-desc">Nos actions s'inscrivent dans une vision panafricaine — construire des ponts entre les peuples et tisser un réseau d'entraide continental.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT NUMBERS -->
+<div class="impact-section">
+  <div class="impact-inner">
+    <div class="impact-stat">
+      <span class="impact-val">2019</span>
+      <span class="impact-label">Année de fondation</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">8<sup>+</sup></span>
+      <span class="impact-label">Programmes humanitaires menés</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">6</span>
+      <span class="impact-label">Années d'action continue</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">17</span>
+      <span class="impact-label">ODD des Nations Unies intégrés</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">1</span>
+      <span class="impact-label">Association, un seul objectif</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMMES -->
+<section class="programs-section" id="programmes">
+  <div class="container">
+    <div class="programs-header reveal">
+      <div class="gold-line">Programmes</div>
+      <h2 class="h2" style="margin-top:18px">Quatre axes<br><em>d'intervention</em></h2>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card reveal">
+        <span class="program-num">Programme 01</span>
+        <div class="program-icon">
+          <svg viewBox="0 0 36 36"><path d="M18 4C10.3 4 4 10.3 4 18s6.3 14 14 14 14-6.3 14-14S25.7 4 18 4z"/><path d="M18 10v8l5 3"/></svg>
+        </div>
+        <h3 class="program-title">Aide alimentaire & urgence humanitaire</h3>
+        <p class="program-desc">Fourniture de denrées alimentaires, de biens de première nécessité et d'un soutien d'urgence aux populations les plus vulnérables.</p>
+        <div class="program-actions">
+          <div class="program-action">Distribution de colis alimentaires aux déplacés du NOSO</div>
+          <div class="program-action">Kits de première nécessité pour familles en détresse</div>
+          <div class="program-action">Soutien ponctuel lors de catastrophes locales</div>
+        </div>
+      </div>
+      <div class="program-card reveal">
+        <span class="program-num">Programme 02</span>
+        <div class="program-icon">
+          <svg viewBox="0 0 36 36"><rect x="5" y="8" width="26" height="20" rx="1"/><path d="M5 14h26M12 8v4M24 8v4"/><path d="M10 20h6M10 24h4"/></svg>
+        </div>
+        <h3 class="program-title">Éducation & insertion des jeunes</h3>
+        <p class="program-desc">Accompagnement scolaire, distribution de kits éducatifs et programmes de formation pour les jeunes déscolarisés ou en difficulté.</p>
+        <div class="program-actions">
+          <div class="program-action">Kits scolaires pour enfants orphelins et vulnérables</div>
+          <div class="program-action">Ateliers de formation en leadership jeunesse</div>
+          <div class="program-action">Sensibilisation aux ODD dans les établissements</div>
+        </div>
+      </div>
+      <div class="program-card reveal">
+        <span class="program-num">Programme 03</span>
+        <div class="program-icon">
+          <svg viewBox="0 0 36 36"><path d="M18 10a4 4 0 100-8 4 4 0 000 8zM10 32c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M4 24c0-2.8 2.2-5 5-5M32 24c0-2.8-2.2-5-5-5M4 24h4M32 24h-4"/></svg>
+        </div>
+        <h3 class="program-title">Santé & accompagnement médical</h3>
+        <p class="program-desc">Facilitation de l'accès aux soins, campagnes de sensibilisation sanitaire et prise en charge des frais médicaux pour les plus démunis.</p>
+        <div class="program-actions">
+          <div class="program-action">Campagnes de collecte de sang bénévole</div>
+          <div class="program-action">Prise en charge médicale des populations sans ressources</div>
+          <div class="program-action">Sensibilisation à l'hygiène et à la prévention</div>
+        </div>
+      </div>
+      <div class="program-card reveal">
+        <span class="program-num">Programme 04</span>
+        <div class="program-icon">
+          <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="14"/><path d="M18 4c0 0-8 7-8 14s8 14 8 14 8-7 8-14-8-14-8-14z"/><path d="M4 18h28"/></svg>
+        </div>
+        <h3 class="program-title">Culture, paix & développement durable</h3>
+        <p class="program-desc">Valorisation des cultures africaines, promotion de la paix et sensibilisation aux enjeux environnementaux et sociaux du développement durable.</p>
+        <div class="program-actions">
+          <div class="program-action">Valorisation du Made in Cameroun et artisanat local</div>
+          <div class="program-action">Collection mode éco-responsable à base de matériaux recyclés</div>
+          <div class="program-action">Enquêtes sociales et plaidoyer pour les droits des déplacés</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTOIRE / STORY -->
+<section class="story-section" id="histoire">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <div class="story-card">
+          <div class="story-card-top">
+            <div class="story-card-dot"></div>
+            <span class="story-card-label">Fondatrice — Give A Smile Cameroun</span>
+          </div>
+          <p class="story-card-quote">
+            « Ce n'est pas la taille de l'aide qui compte, c'est la sincérité avec laquelle elle est donnée, et la dignité avec laquelle elle est reçue. »
+          </p>
+          <span class="story-card-author">Georgette Medjiadeu — Présidente fondatrice</span>
+          <div class="story-since-badge">
+            <span class="story-since-year">2019</span>
+            <span class="story-since-text">Fondée à Yaoundé</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-text reveal">
+        <div class="gold-line">Notre Histoire</div>
+        <h2 class="h2" style="margin-top:18px">Née d'une<br><em>conviction profonde</em></h2>
+        <p class="body-text">
+          Give A Smile Cameroun est née en 2019 d'un constat personnel de Georgette Medjiadeu : face à la montée des inégalités, aux drames humanitaires du conflit dans les régions anglophones et à la vulnérabilité croissante des populations défavorisées, l'action associative locale restait insuffisante.
+        </p>
+        <p class="body-text">
+          L'association s'est construite progressivement, en commençant par de petites distributions alimentaires dans les quartiers de Yaoundé, pour devenir aujourd'hui une structure reconnue, récompensée et respectée, dont les actions touchent des centaines de bénéficiaires chaque année.
+        </p>
+        <div class="story-milestones">
+          <div class="milestone">
+            <span class="milestone-year">2019</span>
+            <span class="milestone-text">Création de Give A Smile Cameroun à Yaoundé</span>
+          </div>
+          <div class="milestone">
+            <span class="milestone-year">2020</span>
+            <span class="milestone-text">Lancement des premières distributions de kits scolaires</span>
+          </div>
+          <div class="milestone">
+            <span class="milestone-year">2021</span>
+            <span class="milestone-text">Démarrage des campagnes de sensibilisation aux ODD</span>
+          </div>
+          <div class="milestone">
+            <span class="milestone-year">2022</span>
+            <span class="milestone-text">Prix Valorisation du Made in Cameroon · Enquête sociale NOSO</span>
+          </div>
+          <div class="milestone">
+            <span class="milestone-year">2023</span>
+            <span class="milestone-text">Rayonnement international — Prix d'Impact, Cotonou</span>
+          </div>
+          <div class="milestone">
+            <span class="milestone-year">2025</span>
+            <span class="milestone-text">Poursuite et expansion des programmes humanitaires</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S'IMPLIQUER -->
+<section class="involve-section" id="impliquer">
+  <div class="container">
+    <div class="involve-header reveal">
+      <div class="gold-line">Agir ensemble</div>
+      <h2 class="h2" style="margin-top:18px">Trois façons<br><em>de contribuer</em></h2>
+    </div>
+    <div class="involve-grid">
+      <div class="involve-card reveal">
+        <div class="involve-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="involve-title">Devenir bénévole</h3>
+        <p class="involve-desc">Rejoignez notre équipe sur le terrain ou en support logistique. Votre temps et vos compétences sont une ressource précieuse pour Give A Smile Cameroun. Nous accueillons des profils variés : médecins, enseignants, logisticiens, communicants.</p>
+        <a href="portfolio_georgette.html#contact" class="involve-cta">Nous rejoindre</a>
+      </div>
+      <div class="involve-card reveal">
+        <div class="involve-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+        </div>
+        <h3 class="involve-title">Soutenir financièrement</h3>
+        <p class="involve-desc">Chaque contribution, quelle que soit son montant, permet de financer directement nos actions sur le terrain — un colis alimentaire, un kit scolaire, une consultation médicale. Votre don se traduit en sourires concrets.</p>
+        <a href="portfolio_georgette.html#contact" class="involve-cta">Faire un don</a>
+      </div>
+      <div class="involve-card reveal">
+        <div class="involve-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586"/><path d="M15 4H3a2 2 0 00-2 2v6a2 2 0 002 2h2v4l4-4h4a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+        </div>
+        <h3 class="involve-title">Devenir partenaire</h3>
+        <p class="involve-desc">Entreprises, institutions, ONG ou collectivités — un partenariat avec Give A Smile Cameroun vous permet d'ancrer votre engagement RSE dans une action humanitaire de terrain à fort impact. Contactez-nous pour construire un projet sur mesure.</p>
+        <a href="portfolio_georgette.html#contact" class="involve-cta">Proposer un partenariat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <div class="gold-line">Contact</div>
+    <h2 class="cta-title">Ensemble,<br><em>redonnons le sourire</em></h2>
+    <p class="cta-sub">Pour toute demande de partenariat, bénévolat ou don — Georgette Medjiadeu vous répond personnellement.</p>
+    <a href="portfolio_georgette.html#contact" class="btn btn-gold">Prendre contact</a>
+    <a href="galerie.html" class="btn btn-ghost-light">Voir nos actions</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Give A Smile <em>Cameroun</em> · Fondée par Georgette Medjiadeu</div>
+    <ul class="footer-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#programmes">Programmes</a></li>
+      <li><a href="#histoire">Histoire</a></li>
+      <li><a href="galerie.html">Galerie d'Actions</a></li>
+    </ul>
+    <span class="footer-copy">Association Humanitaire · Yaoundé, Cameroun · 2025</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('solid', window.scrollY > 40); }, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+revealEls.forEach(el => obs.observe(el));
+const impactStats = document.querySelectorAll('.impact-stat');
+const impactObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }); }, { threshold: 0.3 });
+impactStats.forEach(el => impactObs.observe(el));
+</script>
+</body>
+</html>

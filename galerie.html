@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie d'Actions | Georgette Medjiadeu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #111418;
+  --ink-soft: #2a2f35;
+  --gold: #B8962E;
+  --gold-pale: #D4AF58;
+  --gold-faint: rgba(184,150,46,0.10);
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE1;
+  --stone: #8C8880;
+  --stone-light: #C8C4BB;
+  --white: #FFFFFF;
+  --f-display: 'DM Serif Display', Georgia, serif;
+  --f-heading: 'Playfair Display', Georgia, serif;
+  --f-body: 'DM Sans', sans-serif;
+  --max: 1200px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 56px; }
+.gold-line {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--f-body); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+}
+.gold-line::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: var(--gold);
+  flex-shrink: 0;
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  height: 72px;
+  display: flex; align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+}
+#nav.solid {
+  background: rgba(250,247,242,0.96);
+  border-color: var(--cream-dark);
+  backdrop-filter: blur(12px);
+}
+#nav .container {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand {
+  font-family: var(--f-heading);
+  font-size: 1rem; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-brand span { color: var(--gold); }
+.nav-menu {
+  display: flex; align-items: center; gap: 36px; list-style: none;
+}
+.nav-menu a {
+  font-size: 0.75rem; font-weight: 400;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--stone); text-decoration: none;
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-menu a::after {
+  content: ''; position: absolute;
+  bottom: -3px; left: 0; right: 0; height: 1px;
+  background: var(--gold); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.3s var(--ease);
+}
+.nav-menu a:hover { color: var(--ink); }
+.nav-menu a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  background: var(--ink); color: var(--cream) !important;
+  padding: 9px 22px; font-size: 0.7rem !important;
+  letter-spacing: 0.2em !important;
+  transition: background 0.25s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+.nav-back {
+  color: var(--gold) !important;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-back::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+  transform: none;
+  position: static;
+}
+.nav-back::after { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  background: var(--ink);
+  padding: 160px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+}
+.page-hero .container { position: relative; z-index: 2; }
+.page-hero-kicker {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold-pale); font-weight: 400;
+  margin-bottom: 32px;
+  animation: fadeUp 0.9s 0.1s both;
+}
+.page-hero-kicker-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+.page-hero-title {
+  font-family: var(--f-display);
+  font-size: clamp(3.2rem, 5.5vw, 6rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.9s 0.25s both;
+}
+.page-hero-title em {
+  font-style: italic;
+  color: var(--gold-pale);
+  display: block;
+}
+.page-hero-rule {
+  width: 56px; height: 1px; background: var(--gold);
+  margin: 36px 0 24px;
+  animation: slideIn 0.9s 0.4s both;
+}
+.page-hero-desc {
+  font-size: 0.9rem; font-weight: 300;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.9; max-width: 480px;
+  letter-spacing: 0.03em;
+  animation: fadeUp 0.9s 0.5s both;
+}
+.page-hero-stats {
+  display: flex; gap: 56px; margin-top: 56px;
+  animation: fadeUp 0.9s 0.6s both;
+}
+.ph-stat-val {
+  font-family: var(--f-heading);
+  font-size: 2.8rem; font-weight: 400;
+  color: var(--cream); display: block; line-height: 1;
+}
+.ph-stat-val sup { font-size: 1.2rem; }
+.ph-stat-label {
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(250,247,242,0.35); margin-top: 8px; display: block;
+}
+
+/* Geometric accent line */
+.page-hero-geo {
+  position: absolute; right: 15%; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184,150,46,0.3) 30%, rgba(184,150,46,0.3) 70%, transparent);
+  z-index: 2;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { width: 0; } to { width: 56px; } }
+
+/* ═══════════════════════════════════════════
+   FILTER BAR
+═══════════════════════════════════════════ */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dark);
+  position: sticky; top: 72px; z-index: 90;
+  padding: 0;
+}
+.filter-inner {
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-left: 1px solid var(--cream-dark);
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-btn {
+  padding: 18px 28px;
+  font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--stone); background: none; border: none;
+  border-right: 1px solid var(--cream-dark);
+  cursor: pointer; white-space: nowrap;
+  transition: color 0.25s, background 0.25s;
+  position: relative;
+  font-family: var(--f-body);
+}
+.filter-btn::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+}
+.filter-btn:hover { color: var(--ink); background: var(--cream); }
+.filter-btn.active { color: var(--ink); }
+.filter-btn.active::after { transform: scaleX(1); }
+.filter-count {
+  display: inline-block;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--gold-faint); color: var(--gold);
+  font-size: 0.6rem; font-weight: 500;
+  line-height: 18px; text-align: center;
+  margin-left: 8px; vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════
+   GALLERY GRID
+═══════════════════════════════════════════ */
+.gallery-section {
+  padding: 96px 0 128px;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--cream-dark);
+  margin-top: 0;
+}
+.action-card {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  border: 1px solid var(--cream-dark);
+  position: relative; overflow: hidden;
+  transition: background 0.3s var(--ease);
+  cursor: default;
+}
+.action-card:hover { background: var(--cream); }
+.action-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease);
+  z-index: 1;
+}
+.action-card:hover::before { transform: scaleX(1); }
+
+/* Placeholder visual */
+.card-visual {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.card-visual-inner {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+}
+.card-visual-label {
+  font-family: var(--f-heading);
+  font-size: 0.7rem; font-style: italic;
+  color: rgba(212,175,88,0.4);
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+.card-visual-line {
+  width: 32px; height: 1px; background: rgba(184,150,46,0.3);
+}
+/* Geometric corner accents on visual */
+.card-visual::before, .card-visual::after {
+  content: ''; position: absolute;
+  width: 20px; height: 20px;
+  border-color: rgba(184,150,46,0.25); border-style: solid;
+}
+.card-visual::before {
+  top: 12px; left: 12px;
+  border-width: 1px 0 0 1px;
+}
+.card-visual::after {
+  bottom: 12px; right: 12px;
+  border-width: 0 1px 1px 0;
+}
+/* Subtle noise texture on visual */
+.card-visual-noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.card-body {
+  padding: 32px 28px 36px;
+  display: flex; flex-direction: column; flex: 1;
+}
+.card-category {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.card-category::before {
+  content: ''; display: block;
+  width: 20px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+.card-title {
+  font-family: var(--f-heading);
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--ink); line-height: 1.4;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.card-desc {
+  font-size: 0.84rem; font-weight: 300;
+  color: var(--stone); line-height: 1.8;
+  margin-bottom: 24px;
+}
+.card-meta {
+  display: flex; flex-direction: column; gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cream-dark);
+  margin-top: auto;
+}
+.card-meta-row {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.7rem; font-weight: 400;
+  color: var(--stone); letter-spacing: 0.08em;
+}
+.card-meta-icon {
+  width: 16px; height: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-meta-icon svg { width: 12px; height: 12px; }
+
+/* Featured card (spans 2 cols) */
+.action-card.featured {
+  grid-column: span 2;
+}
+.action-card.featured .card-visual {
+  aspect-ratio: 21/9;
+}
+.action-card.featured .card-title {
+  font-size: 1.3rem;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION DIVIDER
+═══════════════════════════════════════════ */
+.section-divider {
+  padding: 72px 0 48px;
+  display: flex; align-items: center; gap: 24px;
+}
+.sd-label {
+  font-family: var(--f-body);
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--stone); white-space: nowrap;
+}
+.sd-line {
+  flex: 1; height: 1px; background: var(--cream-dark);
+}
+.sd-num {
+  font-family: var(--f-heading);
+  font-size: 0.75rem; font-weight: 400;
+  color: var(--stone-light);
+}
+
+/* ═══════════════════════════════════════════
+   CTA BAND
+═══════════════════════════════════════════ */
+.cta-band {
+  background: var(--ink);
+  padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.5; pointer-events: none;
+}
+.cta-band .container { position: relative; z-index: 1; text-align: center; }
+.cta-band .gold-line { justify-content: center; color: var(--gold-pale); }
+.cta-band .gold-line::before { background: var(--gold-pale); }
+.cta-title {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+  font-weight: 400; color: var(--cream);
+  line-height: 1.1; margin: 20px 0 16px;
+}
+.cta-title em { font-style: italic; color: var(--gold-pale); }
+.cta-sub {
+  font-size: 0.88rem; font-weight: 300;
+  color: rgba(250,247,242,0.45);
+  margin-bottom: 44px;
+}
+.btn {
+  display: inline-block; text-decoration: none;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 15px 36px;
+  transition: all 0.3s var(--ease);
+  cursor: pointer; border: none; font-family: var(--f-body);
+}
+.btn-gold {
+  background: var(--gold); color: var(--white);
+}
+.btn-gold:hover { background: var(--gold-pale); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,150,46,0.35); }
+.btn-ghost-light {
+  background: transparent; color: rgba(250,247,242,0.6);
+  border: 1px solid rgba(250,247,242,0.18);
+  margin-left: 16px;
+}
+.btn-ghost-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 0;
+}
+footer .container {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-brand {
+  font-family: var(--f-heading); font-size: 1rem;
+  font-weight: 400; color: var(--cream);
+  letter-spacing: 0.04em;
+}
+.footer-brand em { font-style: italic; color: var(--gold-pale); }
+.footer-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.footer-links a {
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(250,247,242,0.3); text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy {
+  font-size: 0.7rem; color: rgba(250,247,242,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .action-card.featured { grid-column: span 2; }
+  .page-hero-stats { gap: 36px; }
+}
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  .nav-menu { display: none; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .action-card.featured { grid-column: span 1; }
+  .action-card.featured .card-visual { aspect-ratio: 16/9; }
+  .page-hero-stats { gap: 24px; flex-wrap: wrap; }
+  footer .container { flex-direction: column; gap: 24px; text-align: center; }
+  .footer-links { display: none; }
+}
+
+/* Hidden state for filtering */
+.action-card.hidden {
+  display: none;
+}
+.nav-gallery {
+  color: var(--gold) !important;
+  border: 1px solid rgba(184,150,46,0.35) !important;
+  padding: 7px 18px;
+  transition: border-color 0.25s, background 0.25s !important;
+}
+.nav-gallery::after { display: none !important; }
+.nav-gallery:hover { border-color: var(--gold) !important; background: var(--gold-faint) !important; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="container">
+    <a href="portfolio_georgette.html" class="nav-brand">G. <span>Medjiadeu</span></a>
+        <ul class="nav-menu">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="conferences.html">Conférences</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="cv.html">Parcours</a></li>
+      <li><a href="portfolio_georgette.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="page-hero">
+  <div class="page-hero-geo"></div>
+  <div class="container">
+    <div class="page-hero-kicker">
+      <span class="page-hero-kicker-dot"></span>
+      Actions & Engagements
+    </div>
+    <h1 class="page-hero-title">
+      Galerie
+      <em>d'Actions</em>
+    </h1>
+    <div class="page-hero-rule"></div>
+    <p class="page-hero-desc">
+      Un aperçu complet des initiatives menées sur le terrain, des conférences internationales aux programmes humanitaires — chaque action portant l'ambition d'un impact durable pour les communautés africaines.
+    </p>
+    <div class="page-hero-stats">
+      <div>
+        <span class="ph-stat-val">15<sup>+</sup></span>
+        <span class="ph-stat-label">Actions documentées</span>
+      </div>
+      <div>
+        <span class="ph-stat-val">8<sup>+</sup></span>
+        <span class="ph-stat-label">Pays couverts</span>
+      </div>
+      <div>
+        <span class="ph-stat-val">2019</span>
+        <span class="ph-stat-label">Depuis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FILTER BAR ═══ -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <button class="filter-btn active" data-filter="all">
+        Toutes les actions <span class="filter-count" id="count-all">15</span>
+      </button>
+      <button class="filter-btn" data-filter="humanitaire">
+        Humanitaire <span class="filter-count" id="count-hum">6</span>
+      </button>
+      <button class="filter-btn" data-filter="conference">
+        Conférences <span class="filter-count" id="count-conf">5</span>
+      </button>
+      <button class="filter-btn" data-filter="formation">
+        Formation <span class="filter-count" id="count-form">2</span>
+      </button>
+      <button class="filter-btn" data-filter="culture">
+        Culture & Mode <span class="filter-count" id="count-cult">2</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="gallery-section">
+  <div class="container">
+
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- FEATURED — Action 01 -->
+      <div class="action-card featured reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Give A Smile Cameroun</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Distribution de colis alimentaires aux familles déplacées du conflit NOSO</h2>
+          <p class="card-desc">
+            Dans le cadre de l'association Give A Smile Cameroun, Georgette Medjiadeu a coordonné la distribution de colis alimentaires au bénéfice des familles déplacées par le conflit dans les régions du Nord-Ouest et du Sud-Ouest. L'action a ciblé les quartiers périphériques de Yaoundé, où de nombreuses familles vulnérables vivent dans des conditions précaires, sans ressources suffisantes pour subvenir à leurs besoins alimentaires fondamentaux.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2019 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 02 -->
+      <div class="action-card reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Kits Scolaires</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Distribution de kits scolaires pour enfants orphelins et vulnérables</h2>
+          <p class="card-desc">
+            Fourniture de matériel scolaire complet aux enfants orphelins et issus de familles défavorisées, afin de garantir leur accès à une éducation de qualité et de briser le cycle de la précarité intergénérationnelle.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2020 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 03 -->
+      <div class="action-card reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Don de Sang</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Campagne de collecte de sang et sensibilisation au don volontaire</h2>
+          <p class="card-desc">
+            Organisation et coordination de campagnes de collecte de sang en partenariat avec des centres médicaux de Yaoundé. Sensibilisation des communautés locales à l'importance du don volontaire et régulier pour sauver des vies.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2021 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 04 -->
+      <div class="action-card reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Prise en Charge Médicale</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Programme de prise en charge médicale des populations défavorisées</h2>
+          <p class="card-desc">
+            Mise en place d'un programme d'accompagnement médical pour les personnes sans ressources, incluant la facilitation de l'accès aux soins, la prise en charge des frais hospitaliers et la mise en relation avec des professionnels de santé partenaires.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2022 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 05 -->
+      <div class="action-card reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Enquête Sociale</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Enquête sur les conditions de vie des déplacées du NOSO à Yaoundé VI</h2>
+          <p class="card-desc">
+            Conduite d'une enquête de terrain approfondie visant à documenter les conditions de vie, les besoins prioritaires et les ressources disponibles pour les femmes et familles déplacées installées dans l'arrondissement de Yaoundé VI, en vue d'orienter les actions futures de l'association.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé VI, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2022
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 06 -->
+      <div class="action-card reveal" data-category="formation">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">ODD & Développement</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Formation</span>
+          <h2 class="card-title">Ateliers de sensibilisation aux Objectifs de Développement Durable</h2>
+          <p class="card-desc">
+            En tant que Représentante régionale de Fier des ODD International, Georgette Medjiadeu anime des ateliers participatifs pour sensibiliser les communautés et les jeunes leaders aux 17 Objectifs de Développement Durable des Nations Unies et aux moyens concrets de les intégrer dans leurs projets locaux.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Cameroun & sous-région
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2021 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 07 -->
+      <div class="action-card featured reveal" data-category="conference">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Forum International — Inclusion Financière</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Conférence</span>
+          <h2 class="card-title">Forum international sur l'inclusion financière féminine — Johannesburg</h2>
+          <p class="card-desc">
+            Invitée à prendre la parole lors d'un forum de haut niveau réunissant des leaders africaines engagées pour l'autonomisation économique des femmes. Georgette Medjiadeu y a partagé son expérience de terrain au Cameroun, abordant les obstacles structurels à l'inclusion financière féminine et les stratégies innovantes pour y remédier à l'échelle locale et régionale.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Johannesburg, Afrique du Sud
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2023
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 08 -->
+      <div class="action-card reveal" data-category="conference">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Nuit des Coach — Cotonou</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Conférence</span>
+          <h2 class="card-title">Nuit Internationale des Coach — Prix d'Impact</h2>
+          <p class="card-desc">
+            Participation à la Nuit Internationale des Coach à Cotonou, au Bénin, où Georgette Medjiadeu a été distinguée par le Prix d'Impact pour la qualité et la portée de son action sur les communautés africaines. L'événement a réuni les figures les plus influentes du coaching et du développement personnel en Afrique francophone.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Cotonou, Bénin
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2023
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 09 -->
+      <div class="action-card reveal" data-category="conference">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Femmes d'Impact — Centrafrique</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Conférence</span>
+          <h2 class="card-title">Sommet du Réseau Mondial des Femmes d'Impact — Bangui</h2>
+          <p class="card-desc">
+            Présence remarquée au Sommet du Réseau Mondial des Femmes d'Impact tenu en République Centrafricaine, où elle a été honorée du titre de Meilleure Femme Dynamique. Sa prise de parole a mis en lumière le rôle déterminant des femmes leaders dans la construction de la paix et du développement durable en Afrique centrale.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Bangui, République Centrafricaine
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2023
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 10 -->
+      <div class="action-card reveal" data-category="conference">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Gouvernance Locale — ADECO</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Conférence</span>
+          <h2 class="card-title">Conférence sur la gouvernance locale et l'engagement féminin — ADECO ONG</h2>
+          <p class="card-desc">
+            Intervention lors des assises de l'ADECO ONG consacrées à la gouvernance locale inclusive. Georgette Medjiadeu y a défendu la nécessité d'une participation active des femmes dans les structures décisionnelles locales et a présenté des propositions concrètes pour lever les barrières à leur représentation.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Cotonou, Bénin
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2023
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 11 -->
+      <div class="action-card reveal" data-category="conference">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Trophée Africain — Bénin</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Conférence</span>
+          <h2 class="card-title">Trophée Africain des Femmes Entrepreneures — Tableau de Distinction</h2>
+          <p class="card-desc">
+            Présence et distinction lors de la cérémonie du Trophée Africain des Femmes Entrepreneures au Bénin, récompensant les parcours les plus exemplaires d'entrepreneuriat féminin sur le continent africain. Une reconnaissance de l'impact économique et social de son action au Cameroun.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Bénin
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2024
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 12 -->
+      <div class="action-card reveal" data-category="formation">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Leadership Féminin</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Formation</span>
+          <h2 class="card-title">Programme de formation en leadership féminin et entrepreneuriat social</h2>
+          <p class="card-desc">
+            Conception et animation d'un programme de formation dédié aux femmes souhaitant développer leurs compétences en leadership, gestion associative et entrepreneuriat social. Le programme intègre des modules sur la prise de décision, la gestion de projet et la mobilisation de ressources pour des initiatives à impact.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2022 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 13 -->
+      <div class="action-card featured reveal" data-category="culture">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Made in Cameroun — Artisanat Africain</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Culture & Mode</span>
+          <h2 class="card-title">Valorisation du Made in Cameroun et de l'artisanat africain</h2>
+          <p class="card-desc">
+            Lauréate du Prix Valorisation du Made in Cameroon en 2022, Georgette Medjiadeu a mené des actions de promotion des productions locales et de l'artisanat africain. En lien avec sa marque Smiling et ses responsabilités chez Mea Bois, elle a contribué à structurer une filière de valorisation du savoir-faire camerounais à l'échelle nationale et internationale, soutenant ainsi des artisans et producteurs locaux.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Yaoundé & Douala, Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2021 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 14 -->
+      <div class="action-card reveal" data-category="culture">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Mode Durable</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Culture & Mode</span>
+          <h2 class="card-title">Collection de mode éco-responsable à base d'objets recyclés et herbes naturelles</h2>
+          <p class="card-desc">
+            Développement d'une ligne de mode innovante intégrant des matériaux recyclés et des plantes naturelles dans la conception de vêtements et accessoires. Cette initiative allie créativité, durabilité et conscience environnementale, tout en mettant en valeur les ressources naturelles camerounaises et le savoir-faire artisanal local.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2022 — En cours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action 15 -->
+      <div class="action-card reveal" data-category="humanitaire">
+        <div class="card-visual">
+          <div class="card-visual-noise"></div>
+          <div class="card-visual-inner">
+            <div class="card-visual-line"></div>
+            <span class="card-visual-label">Culture Bamiléké</span>
+            <div class="card-visual-line"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-category">Humanitaire</span>
+          <h2 class="card-title">Soutien à la préservation de la culture Bamiléké — Groupement FOYAVE</h2>
+          <p class="card-desc">
+            En lien avec ses racines et son engagement culturel, Georgette Medjiadeu a contribué à la valorisation et à la préservation du patrimoine culturel Bamiléké dans le cadre du Groupement FOYAVE, à l'Ouest Cameroun, obtenant une Note d'Encouragement pour cette action en faveur de la mémoire et de l'identité culturelle africaine.
+          </p>
+          <div class="card-meta">
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="6" cy="5" r="2.5"/><path d="M6 12C6 12 1.5 7.5 1.5 5a4.5 4.5 0 019 0C10.5 7.5 6 12 6 12z"/>
+                </svg>
+              </span>
+              Ouest Cameroun
+            </div>
+            <div class="card-meta-row">
+              <span class="card-meta-icon">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="1" y="2" width="10" height="9" rx="1"/><path d="M4 1v2M8 1v2M1 5h10"/>
+                </svg>
+              </span>
+              2022
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="gold-line" style="justify-content:center">Collaboration</div>
+    <h2 class="cta-title">Rejoindre une<br><em>mission d'impact</em></h2>
+    <p class="cta-sub">Partenariats, conférences, projets associatifs — construisons ensemble.</p>
+    <a href="portfolio_georgette.html#contact" class="btn btn-gold">Prendre contact</a>
+    <a href="portfolio_georgette.html" class="btn btn-ghost-light">Retour au portfolio</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Georgette <em>Medjiadeu</em> — Epse Tchokoualieu</div>
+    <ul class="footer-links">
+      <li><a href="portfolio_georgette.html#about">À Propos</a></li>
+      <li><a href="portfolio_georgette.html#parcours">Parcours</a></li>
+      <li><a href="portfolio_georgette.html#givesmile">Give A Smile</a></li>
+      <li><a href="portfolio_georgette.html#awards">Distinctions</a></li>
+    </ul>
+    <span class="footer-copy">Ambassadrice de Paix · Cameroun · 2025</span>
+  </div>
+</footer>
+
+<!-- ═══ JS ═══ -->
+<script>
+/* Nav solid on scroll */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 40);
+}, { passive: true });
+
+/* Scroll reveal */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revealObs.observe(el));
+
+/* Filter system */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.action-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    /* Re-trigger reveal for visible cards */
+    setTimeout(() => {
+      document.querySelectorAll('.action-card:not(.hidden)').forEach((card) => {
+        card.classList.add('in');
+      });
+    }, 50);
+  });
+});
+</script>
+</body>
+</html>

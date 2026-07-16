@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conférences & Interventions | Georgette Medjiadeu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #111418;
+  --gold: #B8962E;
+  --gold-pale: #D4AF58;
+  --gold-faint: rgba(184,150,46,0.10);
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE1;
+  --stone: #8C8880;
+  --stone-light: #C8C4BB;
+  --white: #FFFFFF;
+  --f-display: 'DM Serif Display', Georgia, serif;
+  --f-heading: 'Playfair Display', Georgia, serif;
+  --f-body: 'DM Sans', sans-serif;
+  --max: 1200px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: var(--max); margin: 0 auto; padding: 0 56px; }
+.gold-line { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-body); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+.gold-line::before { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* NAV */
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 72px; display: flex; align-items: center; border-bottom: 1px solid transparent; transition: background 0.4s, border-color 0.4s; }
+#nav.solid { background: rgba(17,20,24,0.96); border-color: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
+#nav .container { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+.nav-brand span { color: var(--gold); }
+.nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-menu a { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.45); text-decoration: none; transition: color 0.25s; position: relative; }
+.nav-menu a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+.nav-menu a:hover { color: var(--cream); }
+.nav-menu a:hover::after { transform: scaleX(1); }
+.nav-cta { background: var(--gold) !important; color: var(--white) !important; padding: 9px 22px; font-size: 0.7rem !important; letter-spacing: 0.2em !important; transition: background 0.25s !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold-pale) !important; }
+
+/* HERO — full dark, editorial */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex; align-items: flex-end;
+  padding-bottom: 100px;
+  position: relative; overflow: hidden;
+}
+.hero-bg-num {
+  position: absolute; right: 5%; bottom: -5%;
+  font-family: var(--f-display);
+  font-size: 30vw; font-style: italic;
+  color: rgba(184,150,46,0.035);
+  line-height: 1; pointer-events: none; user-select: none;
+  z-index: 0;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6; pointer-events: none;
+}
+.hero-line-vert {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184,150,46,0.25) 30%, rgba(184,150,46,0.25) 70%, transparent);
+  z-index: 2;
+}
+.hero .container { position: relative; z-index: 3; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+.hero-left {}
+.hero-kicker { display: flex; align-items: center; gap: 14px; font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-pale); font-weight: 400; margin-bottom: 36px; animation: fadeUp 1s 0.2s both; }
+.hero-kicker-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+.hero-title { font-family: var(--f-display); font-size: clamp(3.5rem, 5.5vw, 6rem); font-weight: 400; color: var(--cream); line-height: 0.95; letter-spacing: -0.01em; animation: fadeUp 1s 0.35s both; }
+.hero-title em { font-style: italic; color: var(--gold-pale); display: block; }
+.hero-rule { width: 56px; height: 1px; background: var(--gold); margin: 36px 0 28px; animation: slideIn 1s 0.5s both; }
+.hero-desc { font-size: 0.9rem; font-weight: 300; color: rgba(250,247,242,0.5); line-height: 1.9; max-width: 420px; animation: fadeUp 1s 0.6s both; }
+.hero-right { padding-left: 40px; border-left: 1px solid rgba(255,255,255,0.06); animation: fadeUp 1s 0.5s both; }
+.hero-countries-title { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(250,247,242,0.3); margin-bottom: 24px; }
+.hero-countries { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
+.country-tag { padding: 8px 16px; border: 1px solid rgba(255,255,255,0.08); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,247,242,0.5); transition: border-color 0.25s, color 0.25s; }
+.country-tag:hover { border-color: var(--gold); color: var(--gold-pale); }
+.hero-stat-row { display: flex; gap: 48px; }
+.h-stat-val { font-family: var(--f-heading); font-size: 2.8rem; font-weight: 400; color: var(--cream); display: block; line-height: 1; }
+.h-stat-val sup { font-size: 1.2rem; }
+.h-stat-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.28); margin-top: 8px; display: block; }
+
+.hero-scroll { position: absolute; bottom: 40px; right: 56px; z-index: 3; display: flex; align-items: center; gap: 12px; font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(250,247,242,0.3); animation: fadeUp 1s 1.2s both; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { width: 0; } to { width: 56px; } }
+@keyframes barSlide { 0% { left: -100%; } 100% { left: 100%; } }
+
+/* THEMES */
+.themes-section { padding: 120px 0; background: var(--white); }
+.themes-header { margin-bottom: 80px; }
+.h2 { font-family: var(--f-heading); font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 18px; }
+.h2 em { font-style: italic; color: var(--gold); }
+.themes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--cream-dark); }
+.theme-card { background: var(--cream); padding: 48px 36px 44px; position: relative; overflow: hidden; transition: background 0.3s; }
+.theme-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+.theme-card:hover { background: var(--white); }
+.theme-card:hover::before { transform: scaleX(1); }
+.theme-icon { width: 44px; height: 44px; margin-bottom: 28px; display: flex; align-items: center; justify-content: center; }
+.theme-icon svg { width: 36px; height: 36px; stroke: var(--gold); stroke-width: 1; fill: none; }
+.theme-num { display: block; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--stone-light); margin-bottom: 14px; }
+.theme-title { font-family: var(--f-heading); font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+.theme-desc { font-size: 0.84rem; font-weight: 300; color: var(--stone); line-height: 1.8; }
+
+/* TIMELINE CONFERENCES */
+.conf-section { padding: 120px 0; background: var(--cream); }
+.conf-header { text-align: center; margin-bottom: 96px; }
+.conf-header .gold-line { justify-content: center; }
+.conf-header .gold-line::before { display: none; }
+
+/* Year band */
+.year-group { margin-bottom: 72px; }
+.year-group:last-child { margin-bottom: 0; }
+.year-label { font-family: var(--f-heading); font-size: 4rem; font-weight: 400; color: var(--cream-dark); letter-spacing: -0.03em; line-height: 1; margin-bottom: 32px; position: relative; display: inline-block; }
+.year-label::after { content: ''; display: block; width: 100%; height: 1px; background: var(--cream-dark); position: absolute; bottom: -8px; left: 0; }
+.conf-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+.conf-card { background: var(--white); padding: 36px 28px 32px; border: 1px solid var(--cream-dark); position: relative; transition: background 0.3s; }
+.conf-card:hover { background: var(--cream); }
+.conf-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), var(--gold-pale)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+.conf-card:hover::after { transform: scaleX(1); }
+.conf-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.conf-country { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.conf-type { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone-light); background: var(--cream-dark); padding: 4px 10px; }
+.conf-title { font-family: var(--f-heading); font-size: 1rem; font-weight: 500; color: var(--ink); line-height: 1.45; margin-bottom: 12px; }
+.conf-desc { font-size: 0.8rem; font-weight: 300; color: var(--stone); line-height: 1.75; margin-bottom: 20px; }
+.conf-org { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone-light); padding-top: 16px; border-top: 1px solid var(--cream-dark); }
+
+/* TOPICS CLOUD */
+.topics-section { background: var(--ink); padding: 96px 0; }
+.topics-inner { text-align: center; }
+.topics-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,242,0.3); margin-bottom: 56px; display: block; }
+.topics-cloud { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px; margin: 0 auto; }
+.topic-pill { padding: 12px 24px; border: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; font-weight: 300; letter-spacing: 0.08em; color: rgba(250,247,242,0.5); transition: border-color 0.25s, color 0.25s, background 0.25s; cursor: default; }
+.topic-pill:hover { border-color: var(--gold); color: var(--gold-pale); background: var(--gold-faint); }
+.topic-pill.large { font-size: 1rem; padding: 16px 32px; color: rgba(250,247,242,0.7); }
+.topic-pill.large:hover { color: var(--gold-pale); }
+
+/* INVITATION / BOOKING */
+.booking-section { padding: 120px 0; background: var(--white); }
+.booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.booking-text {}
+.booking-text .body-text { font-size: 0.95rem; font-weight: 300; line-height: 1.95; color: var(--stone); margin-top: 24px; }
+.specs-list { margin-top: 48px; }
+.spec-item { display: flex; align-items: flex-start; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--cream-dark); }
+.spec-item:first-child { border-top: 1px solid var(--cream-dark); }
+.spec-key { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); width: 140px; flex-shrink: 0; padding-top: 2px; }
+.spec-val { font-size: 0.88rem; font-weight: 300; color: var(--ink); line-height: 1.6; }
+.booking-form-area { background: var(--ink); padding: 56px 48px; position: relative; }
+.booking-form-area::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px solid rgba(184,150,46,0.15); pointer-events: none; }
+.bf-title { font-family: var(--f-heading); font-size: 1.4rem; font-weight: 400; color: var(--cream); margin-bottom: 36px; }
+.bf-field { margin-bottom: 20px; }
+.bf-label { display: block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.4); margin-bottom: 10px; font-weight: 400; }
+.bf-input, .bf-select, .bf-textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--cream); font-family: var(--f-body); font-size: 0.88rem; font-weight: 300; padding: 14px 18px; outline: none; transition: border-color 0.3s; appearance: none; }
+.bf-input:focus, .bf-select:focus, .bf-textarea:focus { border-color: var(--gold); }
+.bf-textarea { min-height: 110px; resize: vertical; }
+.bf-input::placeholder, .bf-textarea::placeholder { color: rgba(250,247,242,0.25); }
+.bf-select option { background: var(--ink); color: var(--cream); }
+.btn-submit { margin-top: 12px; width: 100%; background: var(--gold); color: var(--white); border: none; cursor: pointer; font-family: var(--f-body); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; padding: 16px; transition: background 0.3s; }
+.btn-submit:hover { background: var(--gold-pale); }
+
+/* TESTIMONIAL */
+.testimonial-section { background: var(--cream); padding: 96px 0; }
+.testimonial-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+.testimonial-mark { font-family: var(--f-display); font-size: 5rem; color: var(--gold-pale); line-height: 1; opacity: 0.5; display: block; margin-bottom: -16px; }
+.testimonial-text { font-family: var(--f-heading); font-style: italic; font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 400; color: var(--ink); line-height: 1.65; margin-bottom: 40px; letter-spacing: -0.01em; }
+.testimonial-divider { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 24px; }
+.testimonial-author { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone); }
+.testimonial-org { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 6px; display: block; }
+
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0; }
+footer .container { display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: var(--f-heading); font-size: 1rem; font-weight: 400; color: var(--cream); letter-spacing: 0.04em; }
+.footer-brand em { font-style: italic; color: var(--gold-pale); }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.3); text-decoration: none; transition: color 0.25s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.7rem; color: rgba(250,247,242,0.2); letter-spacing: 0.1em; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .hero-inner, .booking-grid { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); padding-left: 0; padding-top: 40px; }
+  .themes-grid { grid-template-columns: 1fr 1fr; }
+  .conf-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  .nav-menu { display: none; }
+  .themes-grid { grid-template-columns: 1fr; }
+  .conf-cards { grid-template-columns: 1fr; }
+  footer .container { flex-direction: column; gap: 24px; text-align: center; }
+  .footer-links { display: none; }
+}
+.nav-gallery {
+  color: var(--gold) !important;
+  border: 1px solid rgba(184,150,46,0.35) !important;
+  padding: 7px 18px;
+  transition: border-color 0.25s, background 0.25s !important;
+}
+.nav-gallery::after { display: none !important; }
+.nav-gallery:hover { border-color: var(--gold) !important; background: var(--gold-faint) !important; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="portfolio_georgette.html" class="nav-brand">G. <span>Medjiadeu</span></a>
+        <ul class="nav-menu">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="conferences.html">Conférences</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="cv.html">Parcours</a></li>
+      <li><a href="portfolio_georgette.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-bg-num">8</span>
+  <div class="hero-line-vert"></div>
+  <div class="container" style="width:100%">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot"></span>
+          Conférencière internationale
+        </div>
+        <h1 class="hero-title">
+          Conférences<br>
+          <em>&amp; Interventions</em>
+        </h1>
+        <div class="hero-rule"></div>
+        <p class="hero-desc">
+          De Johannesburg à Cotonou, de Bangui aux Comores — Georgette Medjiadeu porte une parole d'expérience sur l'inclusion financière féminine, la paix et le développement durable à l'échelle internationale.
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="hero-countries-title">Pays de conférence</div>
+        <div class="hero-countries">
+          <span class="country-tag">Cameroun</span>
+          <span class="country-tag">Afrique du Sud</span>
+          <span class="country-tag">Bénin</span>
+          <span class="country-tag">Centrafrique</span>
+          <span class="country-tag">Congo-Brazzaville</span>
+          <span class="country-tag">Comores</span>
+          <span class="country-tag">Sénégal</span>
+          <span class="country-tag">Côte d'Ivoire</span>
+        </div>
+        <div class="hero-stat-row">
+          <div>
+            <span class="h-stat-val">8<sup>+</sup></span>
+            <span class="h-stat-label">Pays couverts</span>
+          </div>
+          <div>
+            <span class="h-stat-val">20<sup>+</sup></span>
+            <span class="h-stat-label">Interventions majeures</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span style="width:36px;height:1px;background:rgba(250,247,242,0.15);display:block"></span>
+    Parcourir
+  </div>
+</section>
+
+<!-- THÈMES -->
+<section class="themes-section" id="themes">
+  <div class="container">
+    <div class="themes-header reveal">
+      <div class="gold-line">Domaines d'expertise</div>
+      <h2 class="h2">Les thèmes<br><em>de ses interventions</em></h2>
+    </div>
+    <div class="themes-grid">
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><path d="M18 4c7.7 0 14 6.3 14 14S25.7 32 18 32 4 25.7 4 18 10.3 4 18 4z"/><path d="M18 4c0 0-7 7-7 14s7 14 7 14 7-7 7-14-7-14-7-14z"/><path d="M4 18h28"/></svg>
+        </div>
+        <span class="theme-num">Thème 01</span>
+        <h3 class="theme-title">Inclusion financière féminine</h3>
+        <p class="theme-desc">Comment lever les barrières à l'accès des femmes aux services financiers en Afrique ? Stratégies, outils et témoignages d'expérience terrain au Cameroun et dans la sous-région.</p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><path d="M18 4l4 12h12l-10 7 4 12L18 27l-10 8 4-12L2 16h12z"/></svg>
+        </div>
+        <span class="theme-num">Thème 02</span>
+        <h3 class="theme-title">Leadership féminin & entrepreneuriat</h3>
+        <p class="theme-desc">Le parcours de femmes qui ont choisi d'entreprendre malgré les obstacles. Construire une vision, mobiliser des ressources et incarner un changement durable dans les communautés africaines.</p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="14"/><path d="M12 18l4 4 8-8"/></svg>
+        </div>
+        <span class="theme-num">Thème 03</span>
+        <h3 class="theme-title">Objectifs de Développement Durable</h3>
+        <p class="theme-desc">Traduire les ODD des Nations Unies en actions concrètes à l'échelle locale. L'expérience de Fier des ODD International au Cameroun comme modèle transposable en Afrique.</p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><path d="M6 24s2-4 12-4 12 4 12 4"/><circle cx="18" cy="12" r="6"/><path d="M10 32c1.3-2.5 4.3-4 8-4s6.7 1.5 8 4"/></svg>
+        </div>
+        <span class="theme-num">Thème 04</span>
+        <h3 class="theme-title">Paix & cohésion sociale</h3>
+        <p class="theme-desc">Comment les femmes leaders peuvent-elles être actrices de paix dans des contextes de tensions sociales ou de conflits ? Retours d'expérience du Cameroun et de la sous-région.</p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><rect x="6" y="6" width="24" height="24" rx="2"/><path d="M12 6v24M24 6v24M6 18h24"/></svg>
+        </div>
+        <span class="theme-num">Thème 05</span>
+        <h3 class="theme-title">Gouvernance locale inclusive</h3>
+        <p class="theme-desc">Plaidoyer pour une meilleure représentation des femmes dans les instances décisionnelles locales. Mécanismes, résistances et leviers pour une gouvernance réellement inclusive en Afrique centrale.</p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-icon">
+          <svg viewBox="0 0 36 36"><path d="M6 30c0-6.6 5.4-12 12-12s12 5.4 12 12"/><circle cx="18" cy="10" r="7"/><path d="M28 18c2.2 1.8 4 4.6 4 8"/><path d="M8 18c-2.2 1.8-4 4.6-4 8"/></svg>
+        </div>
+        <span class="theme-num">Thème 06</span>
+        <h3 class="theme-title">Valorisation du made in Africa</h3>
+        <p class="theme-desc">Promouvoir la production locale, l'artisanat africain et les circuits courts comme levier d'autonomisation économique des communautés. L'expérience Mea Bois et la marque Smiling comme cas d'école.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFÉRENCES PAR ANNÉE -->
+<section class="conf-section" id="conferences">
+  <div class="container">
+    <div class="conf-header reveal">
+      <div class="gold-line">Historique</div>
+      <h2 class="h2" style="margin-top:18px">Engagements<br><em>internationaux</em></h2>
+    </div>
+
+    <div class="year-group reveal">
+      <div class="year-label">2025</div>
+      <div class="conf-cards">
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Congo Brazzaville</span>
+            <span class="conf-type">Distinction</span>
+          </div>
+          <h3 class="conf-title">Prix Étoile d'Excellence — La Grandeur</h3>
+          <p class="conf-desc">Reconnaissance internationale de l'ensemble de sa trajectoire de leadership, de son engagement humanitaire et de son rayonnement au-delà des frontières camerounaises.</p>
+          <div class="conf-org">La Grandeur · Congo Brazzaville</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group reveal">
+      <div class="year-label">2024</div>
+      <div class="conf-cards">
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Bénin</span>
+            <span class="conf-type">Distinction</span>
+          </div>
+          <h3 class="conf-title">Trophée Africain des Femmes Entrepreneures</h3>
+          <p class="conf-desc">Présence au Tableau de Distinction africain récompensant les parcours entrepreneuriaux féminins les plus impactants sur le continent, avec intervention sur l'entrepreneuriat social camerounais.</p>
+          <div class="conf-org">Tableau de Distinction · Bénin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group reveal">
+      <div class="year-label">2023</div>
+      <div class="conf-cards">
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Afrique du Sud</span>
+            <span class="conf-type">Forum</span>
+          </div>
+          <h3 class="conf-title">Forum international — Inclusion financière féminine</h3>
+          <p class="conf-desc">Intervention de fond sur les obstacles structurels à l'accès des femmes aux services financiers en Afrique centrale et les stratégies innovantes développées au Cameroun.</p>
+          <div class="conf-org">Forum Johannesburg · Afrique du Sud</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Bénin</span>
+            <span class="conf-type">Gala</span>
+          </div>
+          <h3 class="conf-title">La Nuit Internationale des Coach — Prix d'Impact</h3>
+          <p class="conf-desc">Conférence sur le coaching transformationnel et l'impact communautaire. Distinction par le Prix d'Impact pour la qualité et la profondeur de son engagement auprès des populations vulnérables.</p>
+          <div class="conf-org">Nuit Internationale des Coach · Cotonou</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Centrafrique</span>
+            <span class="conf-type">Sommet</span>
+          </div>
+          <h3 class="conf-title">Sommet — Réseau Mondial des Femmes d'Impact</h3>
+          <p class="conf-desc">Prise de parole sur le rôle des femmes leaders dans la construction de la paix et du développement durable en Afrique centrale. Distinction : Meilleure Femme Dynamique.</p>
+          <div class="conf-org">Réseau Mondial des Femmes d'Impact · Bangui</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Bénin</span>
+            <span class="conf-type">Assises</span>
+          </div>
+          <h3 class="conf-title">Gouvernance locale — ADECO ONG</h3>
+          <p class="conf-desc">Plaidoyer pour une participation accrue des femmes dans les structures décisionnelles locales. Propositions concrètes pour lever les barrières à la représentation féminine.</p>
+          <div class="conf-org">ADECO ONG · Cotonou, Bénin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group reveal">
+      <div class="year-label">2021–22</div>
+      <div class="conf-cards">
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Comores</span>
+            <span class="conf-type">Conférence</span>
+          </div>
+          <h3 class="conf-title">Conférence — Entrepreneuriat féminin & autonomisation</h3>
+          <p class="conf-desc">Intervention sur les leviers de l'autonomisation économique des femmes en contexte insulaire et les passerelles avec les dynamiques continentales africaines.</p>
+          <div class="conf-org">Forum des Femmes Leaders · Comores</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Cameroun</span>
+            <span class="conf-type">Forum</span>
+          </div>
+          <h3 class="conf-title">Forum ODD — Représentation régionale Fier des ODD</h3>
+          <p class="conf-desc">En tant que représentante régionale de Fier des ODD International, animation de forums de sensibilisation aux 17 Objectifs de Développement Durable dans les communautés camerounaises.</p>
+          <div class="conf-org">Fier des ODD International · Yaoundé, Cameroun</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-header">
+            <span class="conf-country">Cameroun</span>
+            <span class="conf-type">Distinction</span>
+          </div>
+          <h3 class="conf-title">Prix Valorisation du Made in Cameroon</h3>
+          <p class="conf-desc">Reconnaissance publique de son engagement pour la promotion des productions locales et de l'artisanat camerounais dans un contexte de mondialisation croissante.</p>
+          <div class="conf-org">Yaoundé · Cameroun — 2022</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS CLOUD -->
+<section class="topics-section">
+  <div class="container">
+    <div class="topics-inner">
+      <span class="topics-label reveal">Mots-clés de ses interventions</span>
+      <div class="topics-cloud reveal">
+        <span class="topic-pill large">Inclusion financière</span>
+        <span class="topic-pill">Entrepreneuriat social</span>
+        <span class="topic-pill large">Leadership féminin</span>
+        <span class="topic-pill">ODD</span>
+        <span class="topic-pill">Gouvernance</span>
+        <span class="topic-pill large">Paix & développement</span>
+        <span class="topic-pill">Made in Africa</span>
+        <span class="topic-pill">Cohésion sociale</span>
+        <span class="topic-pill large">Autonomisation</span>
+        <span class="topic-pill">Micro-finance</span>
+        <span class="topic-pill">Impact communautaire</span>
+        <span class="topic-pill">Afrique centrale</span>
+        <span class="topic-pill large">Femmes entrepreneurs</span>
+        <span class="topic-pill">RSE</span>
+        <span class="topic-pill">Mode durable</span>
+        <span class="topic-pill">Droits des déplacés</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="container">
+    <div class="testimonial-inner reveal">
+      <span class="testimonial-mark">"</span>
+      <p class="testimonial-text">
+        Georgette Medjiadeu incarne ce que nous appelons un leadership d'impact — une femme dont les mots résonnent parce qu'ils sont ancrés dans une action réelle, quotidienne, sur le terrain.
+      </p>
+      <div class="testimonial-divider"></div>
+      <span class="testimonial-author">Une organisatrice de forum, Cotonou</span>
+      <span class="testimonial-org">Nuit Internationale des Coach — 2023</span>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION / BOOKING -->
+<section class="booking-section" id="invitation">
+  <div class="container">
+    <div class="booking-grid">
+      <div class="booking-text reveal">
+        <div class="gold-line">Inviter Georgette</div>
+        <h2 class="h2" style="margin-top:18px">Vous souhaitez<br><em>l'inviter ?</em></h2>
+        <p class="body-text">
+          Georgette Medjiadeu est disponible pour des conférences, panels, formations, ateliers et événements de gala. Son intervention s'adapte au format et aux objectifs de votre événement, qu'il soit local, national ou international.
+        </p>
+        <div class="specs-list">
+          <div class="spec-item">
+            <span class="spec-key">Formats</span>
+            <span class="spec-val">Conférence principale, table ronde, atelier participatif, gala, formation en salle</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-key">Langues</span>
+            <span class="spec-val">Français — Anglais — Féfé</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-key">Zones</span>
+            <span class="spec-val">Afrique centrale, Afrique de l'Ouest, international</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-key">Contact</span>
+            <span class="spec-val">gmedjiadeu@gmail.com · +237 670 85 47 85</span>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form-area reveal">
+        <p class="bf-title">Soumettre une invitation</p>
+        <form action="mailto:gmedjiadeu@gmail.com" method="post" enctype="text/plain">
+          <div class="bf-field">
+            <label class="bf-label">Organisation / Événement</label>
+            <input class="bf-input" type="text" name="organisation" placeholder="Nom de l'organisation ou de l'événement" required>
+          </div>
+          <div class="bf-field">
+            <label class="bf-label">Contact responsable</label>
+            <input class="bf-input" type="text" name="contact" placeholder="Votre nom et fonction" required>
+          </div>
+          <div class="bf-field">
+            <label class="bf-label">Email</label>
+            <input class="bf-input" type="email" name="email" placeholder="votre@email.com" required>
+          </div>
+          <div class="bf-field">
+            <label class="bf-label">Type d'événement</label>
+            <select class="bf-select" name="type">
+              <option value="">Sélectionner un format</option>
+              <option value="conference">Conférence principale (keynote)</option>
+              <option value="panel">Table ronde / Panel</option>
+              <option value="atelier">Atelier participatif</option>
+              <option value="gala">Cérémonie / Gala</option>
+              <option value="formation">Formation</option>
+            </select>
+          </div>
+          <div class="bf-field">
+            <label class="bf-label">Date & lieu envisagés</label>
+            <input class="bf-input" type="text" name="date" placeholder="Ex : 15 septembre 2025 · Douala">
+          </div>
+          <div class="bf-field">
+            <label class="bf-label">Thème souhaité / Précisions</label>
+            <textarea class="bf-textarea" name="message" placeholder="Décrivez le contexte, le public et vos attentes..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Envoyer l'invitation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Georgette <em>Medjiadeu</em> — Conférencière internationale</div>
+    <ul class="footer-links">
+      <li><a href="portfolio_georgette.html">Portfolio</a></li>
+      <li><a href="givesmile.html">Give A Smile</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="cv.html">Parcours</a></li>
+    </ul>
+    <span class="footer-copy">Ambassadrice de Paix · Cameroun · 2025</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('solid', window.scrollY > 40); }, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
