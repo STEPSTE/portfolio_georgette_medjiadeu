@@ -292,6 +292,28 @@ body {
   align-items: center; justify-content: center;
   gap: 12px;
 }
+.card-visual-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+  filter: saturate(0.95);
+  transition: transform 0.6s var(--ease);
+}
+.action-card:hover .card-visual-photo { transform: scale(1.045); }
+.card-visual-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(17,20,24,0.05) 0%, rgba(17,20,24,0.12) 55%, rgba(17,20,24,0.78) 100%);
+  z-index: 1;
+}
+.card-visual-inner {
+  z-index: 2;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+  gap: 6px;
+}
+.card-visual-inner .card-visual-line { background: rgba(212,175,88,0.55); }
+.card-visual-inner .card-visual-label { color: rgba(250,247,242,0.92); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
 .card-visual-label {
   font-family: var(--f-heading);
   font-size: 0.7rem; font-style: italic;
@@ -327,6 +349,44 @@ body {
 .card-body {
   padding: 32px 28px 36px;
   display: flex; flex-direction: column; flex: 1;
+}
+
+/* ═══════════════════════════════════════════
+   VIDEO SECTION
+═══════════════════════════════════════════ */
+.video-section {
+  padding: 96px 0 112px;
+  background: var(--cream);
+  border-top: 1px solid var(--cream-dark);
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 44px;
+}
+.video-card {
+  background: var(--ink);
+  border: 1px solid var(--cream-dark);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.video-el {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: block;
+  background: #000;
+}
+.video-caption {
+  padding: 16px 20px;
+  font-family: var(--f-heading);
+  font-size: 0.78rem; font-style: italic;
+  color: rgba(250,247,242,0.85);
+  letter-spacing: 0.02em;
+  border-top: 1px solid rgba(212,175,88,0.18);
+}
+@media (max-width: 720px) {
+  .video-grid { grid-template-columns: 1fr; }
 }
 .card-category {
   display: inline-flex; align-items: center; gap: 10px;
@@ -596,11 +656,12 @@ footer .container {
       <!-- FEATURED — Action 01 -->
       <div class="action-card featured reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/2.jpeg" alt="Give A Smile Cameroun — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Give A Smile Cameroun</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -633,11 +694,12 @@ footer .container {
       <!-- Action 02 -->
       <div class="action-card reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/6.jpeg" alt="Kits Scolaires — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Kits Scolaires</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -670,11 +732,12 @@ footer .container {
       <!-- Action 03 -->
       <div class="action-card reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/10.jpeg" alt="Don de Sang — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Don de Sang</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -707,11 +770,12 @@ footer .container {
       <!-- Action 04 -->
       <div class="action-card reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/14.jpeg" alt="Prise en Charge Médicale — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Prise en Charge Médicale</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -744,11 +808,12 @@ footer .container {
       <!-- Action 05 -->
       <div class="action-card reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/18.jpeg" alt="Enquête Sociale — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Enquête Sociale</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -781,11 +846,12 @@ footer .container {
       <!-- Action 06 -->
       <div class="action-card reveal" data-category="formation">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/22.jpeg" alt="ODD & Développement — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">ODD & Développement</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -818,11 +884,12 @@ footer .container {
       <!-- Action 07 -->
       <div class="action-card featured reveal" data-category="conference">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/26.jpeg" alt="Forum International — Inclusion Financière — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Forum International — Inclusion Financière</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -855,11 +922,12 @@ footer .container {
       <!-- Action 08 -->
       <div class="action-card reveal" data-category="conference">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/30.jpeg" alt="Nuit des Coach — Cotonou — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Nuit des Coach — Cotonou</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -892,11 +960,12 @@ footer .container {
       <!-- Action 09 -->
       <div class="action-card reveal" data-category="conference">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/34.jpeg" alt="Femmes d'Impact — Centrafrique — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Femmes d'Impact — Centrafrique</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -929,11 +998,12 @@ footer .container {
       <!-- Action 10 -->
       <div class="action-card reveal" data-category="conference">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/38.jpeg" alt="Gouvernance Locale — ADECO — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Gouvernance Locale — ADECO</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -966,11 +1036,12 @@ footer .container {
       <!-- Action 11 -->
       <div class="action-card reveal" data-category="conference">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/42.jpeg" alt="Trophée Africain — Bénin — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Trophée Africain — Bénin</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -1003,11 +1074,12 @@ footer .container {
       <!-- Action 12 -->
       <div class="action-card reveal" data-category="formation">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/46.jpeg" alt="Leadership Féminin — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Leadership Féminin</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -1040,11 +1112,12 @@ footer .container {
       <!-- Action 13 -->
       <div class="action-card featured reveal" data-category="culture">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/50.jpeg" alt="Made in Cameroun — Artisanat Africain — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Made in Cameroun — Artisanat Africain</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -1077,11 +1150,12 @@ footer .container {
       <!-- Action 14 -->
       <div class="action-card reveal" data-category="culture">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/55.jpeg" alt="Mode Durable — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Mode Durable</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -1114,11 +1188,12 @@ footer .container {
       <!-- Action 15 -->
       <div class="action-card reveal" data-category="humanitaire">
         <div class="card-visual">
+          <img class="card-visual-photo" src="image/59.jpeg" alt="Culture Bamiléké — Georgette Medjiadeu" loading="lazy">
+          <div class="card-visual-scrim"></div>
           <div class="card-visual-noise"></div>
           <div class="card-visual-inner">
             <div class="card-visual-line"></div>
             <span class="card-visual-label">Culture Bamiléké</span>
-            <div class="card-visual-line"></div>
           </div>
         </div>
         <div class="card-body">
@@ -1149,6 +1224,31 @@ footer .container {
       </div>
 
     </div><!-- /gallery-grid -->
+  </div>
+</section>
+
+<!-- ═══ VIDÉOS ═══ -->
+<section class="video-section">
+  <div class="container">
+    <div class="gold-line">En Mouvement</div>
+    <h2 class="h2" style="margin-top:18px">Moments <em>filmés</em></h2>
+    <p class="body-text" style="max-width:640px;margin-top:14px">
+      Extraits vidéo de terrain et de cérémonies illustrant l'engagement de Georgette Medjiadeu auprès des communautés et lors de ses distinctions.
+    </p>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <video class="video-el" controls preload="metadata" poster="image/8.jpeg">
+          <source src="video/WhatsApp%20Video%202026-07-23%20at%203.03.27%20AM.mp4" type="video/mp4">
+        </video>
+        <span class="video-caption">Action de terrain — Give A Smile Cameroun</span>
+      </div>
+      <div class="video-card reveal">
+        <video class="video-el" controls preload="metadata" poster="image/44.jpeg">
+          <source src="video/WhatsApp%20Video%202026-07-23%20at%203.05.12%20AM.mp4" type="video/mp4">
+        </video>
+        <span class="video-caption">Cérémonie & distinction publique</span>
+      </div>
+    </div>
   </div>
 </section>
 
